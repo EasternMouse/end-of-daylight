@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/world/map.png" type="Texture" id=1]
+[ext_resource path="res://actors/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/world/sea.png" type="Texture" id=3]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 740, 206, 755, 248, 750, 316, 733, 361, 726, 366, 242, 338, 242, 321, 719, 176, 715, 383, 678, 405, 633, 421, 499, 393, 700, 133, 227, 292, 648, 32, 667, 43, 681, 58, 693, 77, 698, 98, 629, 30, 559, 21, 604, 22, 515, 31, 456, 33, 483, 30, 417, 50, 370, 64, 331, 68, 288, 72, 180, 267, 255, 67, 234, 66, 202, 61, 20, 136, 24, 111, 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 138, 268, 24, 168, 28, 208, 109, 274, 32, 261, 87, 286, 33, 274, 19, 302, 77, 309, 9, 355, 76, 334, 11, 391, 46, 420, 24, 410, 94, 360, 101, 421, 124, 372, 145, 416, 179, 372, 186, 409, 204, 366, 275, 409, 231, 352, 321, 404, 372, 395, 421, 392, 533, 402, 509, 399, 573, 414, 550, 411, 592, 421 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ), PoolIntArray( 5, 4, 8, 9, 10, 11 ), PoolIntArray( 12, 7, 6, 13 ), PoolIntArray( 14, 15, 16, 17, 18, 12, 13, 19 ), PoolIntArray( 20, 21, 19, 13, 22 ), PoolIntArray( 23, 24, 22, 13, 25 ), PoolIntArray( 26, 25, 13 ), PoolIntArray( 27, 26, 13 ), PoolIntArray( 28, 27, 13, 29 ), PoolIntArray( 30, 28, 29, 31 ), PoolIntArray( 32, 31, 29 ), PoolIntArray( 33, 34, 35, 36, 37, 38, 39, 32, 29, 40, 41 ), PoolIntArray( 42, 41, 40, 43 ), PoolIntArray( 44, 42, 43, 45, 46 ), PoolIntArray( 47, 46, 45, 48, 49 ), PoolIntArray( 49, 48, 50, 51 ), PoolIntArray( 52, 53, 51, 50, 54, 55 ), PoolIntArray( 55, 54, 56, 57 ), PoolIntArray( 57, 56, 58, 59 ), PoolIntArray( 59, 58, 60, 61 ), PoolIntArray( 61, 60, 62 ), PoolIntArray( 63, 61, 62, 5, 64 ), PoolIntArray( 65, 64, 5 ), PoolIntArray( 66, 67, 11 ), PoolIntArray( 68, 69, 66, 10 ), PoolIntArray( 10, 70, 68 ), PoolIntArray( 11, 65, 5 ), PoolIntArray( 66, 11, 10 ) ]
+outlines = [ PoolVector2Array( 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 202, 61, 234, 66, 255, 67, 288, 72, 331, 68, 370, 64, 417, 50, 456, 33, 483, 30, 515, 31, 559, 21, 604, 22, 629, 30, 648, 32, 667, 43, 681, 58, 693, 77, 698, 98, 700, 133, 719, 176, 740, 206, 755, 248, 750, 316, 733, 361, 726, 366, 715, 383, 678, 405, 633, 421, 592, 421, 573, 414, 550, 411, 533, 402, 509, 399, 499, 393, 421, 392, 372, 395, 321, 404, 275, 409, 186, 409, 145, 416, 101, 421, 46, 420, 24, 410, 11, 391, 9, 355, 19, 302, 33, 274, 32, 261, 28, 208, 24, 168, 20, 136, 24, 111 ), PoolVector2Array( 76, 334, 77, 309, 87, 286, 109, 274, 138, 268, 180, 267, 227, 292, 242, 321, 242, 338, 231, 352, 204, 366, 179, 372, 124, 372, 94, 360 ) ]
+
+[node name="World" type="YSort"]
+
+[node name="Sea" type="TextureRect" parent="."]
+margin_top = -33.0
+margin_right = 768.0
+margin_bottom = 111.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ground" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 574, 24 )
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+position = Vector2( 3, 3 )
+polygon = PoolVector2Array( -3, -3, 765, -3, 765, 429, -3, 429, -3, 5, 67, 62, 38, 79, 24, 94, 17, 108, 14, 133, 18, 166, 22, 208, 24, 237, 26, 261, 26, 271, 13, 299, 4, 352, 4, 375, 6, 389, 12, 400, 19, 409, 30, 416, 42, 420, 101, 421, 145, 416, 185, 409, 273, 409, 321, 404, 321, 404, 376, 395, 428, 393, 467, 394, 499, 397, 505, 401, 530, 404, 545, 411, 556, 413, 571, 415, 590, 422, 631, 422, 663, 410, 678, 405, 697, 392, 713, 383, 725, 371, 727, 366, 734, 360, 753, 312, 758, 246, 741, 199, 722, 171, 703, 130, 699, 97, 694, 70, 683, 52, 666, 35, 644, 24, 626, 22, 602, 15, 554, 14, 507, 24, 490, 24, 470, 23, 449, 27, 434, 32, 406, 45, 377, 51, 361, 57, 307, 64, 271, 64, 245, 60, 232, 60, 191, 53, 167, 50, 158, 48, 135, 48, 113, 49, 92, 51, 74, 58, 67, 62, -3, 5 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Border"]
+polygon = PoolVector2Array( 151, 273, 180, 273, 198, 281, 214, 290, 224, 297, 230, 307, 236, 323, 236, 333, 227, 346, 219, 349, 200, 362, 179, 367, 126, 367, 99, 356, 83, 334, 83, 309, 92, 290, 101, 287, 112, 278, 131, 278, 139, 274 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+visible = false
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
