@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/world/map.png" type="Texture" id=1]
 [ext_resource path="res://actors/Player/Player.tscn" type="PackedScene" id=2]
@@ -7,13 +7,102 @@
 [ext_resource path="res://scenes/world/Navigation2D.gd" type="Script" id=5]
 [ext_resource path="res://ui/MainMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/world/Director.gd" type="Script" id=7]
+[ext_resource path="res://shaders/light_filled.png" type="Texture" id=8]
+[ext_resource path="res://actors/Mobs/Fairy/FairyGreen.tscn" type="PackedScene" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 740, 206, 755, 248, 750, 316, 733, 361, 726, 366, 242, 338, 242, 321, 719, 176, 715, 383, 678, 405, 633, 421, 499, 393, 700, 133, 227, 292, 648, 32, 667, 43, 681, 58, 693, 77, 698, 98, 629, 30, 559, 21, 604, 22, 515, 31, 456, 33, 483, 30, 417, 50, 370, 64, 331, 68, 288, 72, 180, 267, 255, 67, 234, 66, 202, 61, 20, 136, 24, 111, 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 138, 268, 24, 168, 28, 208, 109, 274, 32, 261, 87, 286, 33, 274, 19, 302, 77, 309, 9, 355, 76, 334, 11, 391, 46, 420, 24, 410, 94, 360, 101, 421, 124, 372, 145, 416, 179, 372, 186, 409, 204, 366, 275, 409, 231, 352, 321, 404, 372, 395, 421, 392, 533, 402, 509, 399, 573, 414, 550, 411, 592, 421 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ), PoolIntArray( 5, 4, 8, 9, 10, 11 ), PoolIntArray( 12, 7, 6, 13 ), PoolIntArray( 14, 15, 16, 17, 18, 12, 13, 19 ), PoolIntArray( 20, 21, 19, 13, 22 ), PoolIntArray( 23, 24, 22, 13, 25 ), PoolIntArray( 26, 25, 13 ), PoolIntArray( 27, 26, 13 ), PoolIntArray( 28, 27, 13, 29 ), PoolIntArray( 30, 28, 29, 31 ), PoolIntArray( 32, 31, 29 ), PoolIntArray( 33, 34, 35, 36, 37, 38, 39, 32, 29, 40, 41 ), PoolIntArray( 42, 41, 40, 43 ), PoolIntArray( 44, 42, 43, 45, 46 ), PoolIntArray( 47, 46, 45, 48, 49 ), PoolIntArray( 49, 48, 50, 51 ), PoolIntArray( 52, 53, 51, 50, 54, 55 ), PoolIntArray( 55, 54, 56, 57 ), PoolIntArray( 57, 56, 58, 59 ), PoolIntArray( 59, 58, 60, 61 ), PoolIntArray( 61, 60, 62 ), PoolIntArray( 63, 61, 62, 5, 64 ), PoolIntArray( 65, 64, 5 ), PoolIntArray( 66, 67, 11 ), PoolIntArray( 68, 69, 66, 10 ), PoolIntArray( 10, 70, 68 ), PoolIntArray( 11, 65, 5 ), PoolIntArray( 66, 11, 10 ) ]
 outlines = [ PoolVector2Array( 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 202, 61, 234, 66, 255, 67, 288, 72, 331, 68, 370, 64, 417, 50, 456, 33, 483, 30, 515, 31, 559, 21, 604, 22, 629, 30, 648, 32, 667, 43, 681, 58, 693, 77, 698, 98, 700, 133, 719, 176, 740, 206, 755, 248, 750, 316, 733, 361, 726, 366, 715, 383, 678, 405, 633, 421, 592, 421, 573, 414, 550, 411, 533, 402, 509, 399, 499, 393, 421, 392, 372, 395, 321, 404, 275, 409, 186, 409, 145, 416, 101, 421, 46, 420, 24, 410, 11, 391, 9, 355, 19, 302, 33, 274, 32, 261, 28, 208, 24, 168, 20, 136, 24, 111 ), PoolVector2Array( 76, 334, 77, 309, 87, 286, 109, 274, 138, 268, 180, 267, 227, 292, 242, 321, 242, 338, 231, 352, 204, 366, 179, 372, 124, 372, 94, 360 ) ]
 
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.65098, 0.65098, 0.65098, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sun/Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sun/Light2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.894118, 0.490196, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Sunset"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6.8, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.352941, 0.105882, 0.117647, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sun/Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sun/Light2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.937255, 0, 1 ), Color( 1, 0.541176, 0.172549, 1 ) ]
+}
+
 [node name="World" type="YSort"]
+
+[node name="Sun" type="Node2D" parent="."]
+position = Vector2( 662, -18 )
+
+[node name="Light2D" type="Light2D" parent="Sun"]
+texture = ExtResource( 8 )
+texture_scale = 10.0
+color = Color( 1, 0.894118, 0.490196, 1 )
 
 [node name="Sea" type="TextureRect" parent="."]
 light_mask = 0
@@ -33,7 +122,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 602, 202 )
+position = Vector2( 621, 219 )
 
 [node name="Border" type="StaticBody2D" parent="."]
 visible = false
@@ -57,8 +146,7 @@ navpoly = SubResource( 1 )
 position = Vector2( 639, 223 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0.352941, 0.105882, 0.117647, 1 )
+color = Color( 0.65098, 0.65098, 0.65098, 1 )
 
 [node name="Director" type="Node2D" parent="."]
 script = ExtResource( 7 )
@@ -112,6 +200,14 @@ autostart = true
 layer = 10
 
 [node name="MainMenu" parent="UI" instance=ExtResource( 6 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Sunset"
+anims/RESET = SubResource( 2 )
+anims/Sunset = SubResource( 3 )
+
+[node name="FairyGreen" parent="." instance=ExtResource( 9 )]
+position = Vector2( 473, 176 )
 
 [connection signal="timeout" from="Director/Income" to="Director" method="_on_Income_timeout"]
 [connection signal="timeout" from="Director/Spawn" to="Director" method="_on_Spawn_timeout"]

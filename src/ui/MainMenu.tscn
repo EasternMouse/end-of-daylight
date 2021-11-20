@@ -4,10 +4,11 @@
 [ext_resource path="res://ui/YujiBoku26.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/MainMenu.gd" type="Script" id=3]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.698039 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -46,14 +47,14 @@ fit_content_height = true
 [node name="Control" type="Control" parent="VBoxContainer"]
 margin_top = 51.0
 margin_right = 256.0
-margin_bottom = 51.0
-size_flags_horizontal = 3
+margin_bottom = 78.0
+size_flags_vertical = 3
 
 [node name="ButtonStart" type="Button" parent="VBoxContainer"]
 margin_left = 111.0
-margin_top = 55.0
+margin_top = 82.0
 margin_right = 144.0
-margin_bottom = 73.0
+margin_bottom = 100.0
 size_flags_horizontal = 4
 text = "Start"
 __meta__ = {
@@ -62,19 +63,21 @@ __meta__ = {
 
 [node name="ButtonHowTo" type="Button" parent="VBoxContainer"]
 margin_left = 95.0
-margin_top = 77.0
+margin_top = 104.0
 margin_right = 161.0
-margin_bottom = 95.0
+margin_bottom = 122.0
 size_flags_horizontal = 4
 text = "How to play"
 
 [node name="ButtonQuit" type="Button" parent="VBoxContainer"]
 margin_left = 114.0
-margin_top = 99.0
+margin_top = 126.0
 margin_right = 141.0
-margin_bottom = 117.0
+margin_bottom = 144.0
 size_flags_horizontal = 4
 text = "Quit"
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/ButtonStart" to="." method="_on_ButtonStart_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]

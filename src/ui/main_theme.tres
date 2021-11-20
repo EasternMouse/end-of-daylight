@@ -14,6 +14,7 @@
 default_font = ExtResource( 1 )
 Button/colors/font_color_hover = Color( 0.67451, 0.196078, 0.196078, 1 )
 Button/colors/font_color_pressed = Color( 0.85098, 0.341176, 0.388235, 1 )
+Button/constants/hseparation = 0
 Button/styles/focus = SubResource( 3 )
 Button/styles/hover = SubResource( 4 )
 Button/styles/normal = SubResource( 2 )

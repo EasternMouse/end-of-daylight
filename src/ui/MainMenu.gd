@@ -1,25 +1,18 @@
-extends Control
+extends ColorRect
 
+onready var tween = $Tween
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+	pass
 
 
 func _on_ButtonStart_pressed() -> void:
+	tween.interpolate_property(self, "modulate", modulate, Color(0, 0, 0, 0), 1)
+	tween.start()
+	yield(tween, "tween_all_completed")
 	Events.emit_signal("game_start")
 	visible = false
 
 
 func _on_ButtonQuit_pressed() -> void:
-	pass # Replace with function body.
+	pass

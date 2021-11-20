@@ -8,6 +8,8 @@ export var MAX_SPEED: float = 150.0
 export var FRICTION: float = 1000.0
 export var MAX_LIFE: int = 100
 
+export var melee_damage: int = 1
+
 export var direction_locked := false
 
 var input_vector: Vector2 = Vector2.ZERO
@@ -24,6 +26,8 @@ onready var pivot: Position2D = $Pivot
 onready var sprite_bottom: Sprite = $SpriteBottom
 onready var sprite_top: Sprite = $SpriteTop
 
+onready var melee_hitbox := $Pivot/Melee
+
 
 func _ready() -> void:
 	animation_tree_bottom.active = true
@@ -32,7 +36,18 @@ func _ready() -> void:
 	
 	animation_tree_top.active = true
 	animation_tree_top.set("parameters/blend_position", Vector2.DOWN)
+	
+	Events.connect("game_start", self, "game_start")
+
+
+func game_start():
+	state_machine.transition_to("Idle")
 
 
 func _physics_process(_delta: float) -> void:
 	Events.emit_signal("player_position", global_position)
+
+
+func melee_attack() -> void:
+	for area in melee_hitbox.get_overlapping_areas():
+		area.damage(melee_damage, Vector2(-cos(pivot.rotation), sin(pivot.rotation)))

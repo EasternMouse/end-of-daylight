@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://actors/Player/Cutscene.gd" type="Script" id=1]
 [ext_resource path="res://actors/Player/StateMachine.gd" type="Script" id=2]
@@ -8,9 +8,103 @@
 [ext_resource path="res://actors/Player/melee.png" type="Texture" id=6]
 [ext_resource path="res://actors/Player/reimu.png" type="Texture" id=7]
 [ext_resource path="res://actors/Player/reimu_n.png" type="Texture" id=8]
+[ext_resource path="res://shaders/flashlight.tres" type="Texture" id=9]
+[ext_resource path="res://shaders/light.tres" type="Texture" id=10]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 7.0
+[sub_resource type="Animation" id=5]
+resource_name = "Melee"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 5, 7, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Melee:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:direction_locked")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "melee_attack"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Melee:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:direction_locked")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 12, 18 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "Idle_Down"
@@ -333,86 +427,11 @@ blend_point_3/pos = Vector2( 0, -1 )
 snap = Vector2( 1, 1 )
 blend_mode = 1
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 12, 18 )
+[sub_resource type="OccluderPolygon2D" id=38]
+polygon = PoolVector2Array( -4, 0, -3, -3, 0, -4, 3, -3, 4, 0, 3, 3, 0, 4, -3, 3 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "Melee"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 5, 7, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/Melee:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:direction_locked")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/Melee:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:direction_locked")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.0
 
 [node name="Player" type="KinematicBody2D"]
 light_mask = 2
@@ -421,28 +440,9 @@ script = ExtResource( 3 )
 ACCELERATION = 500.0
 MAX_SPEED = 100.0
 
-[node name="SpriteBottom" type="Sprite" parent="."]
-light_mask = 2
-position = Vector2( 0, -14 )
-texture = ExtResource( 7 )
-normal_map = ExtResource( 8 )
-hframes = 4
-vframes = 8
-
-[node name="SpriteTop" type="Sprite" parent="."]
-position = Vector2( 0, -14 )
-texture = ExtResource( 7 )
-normal_map = ExtResource( 8 )
-hframes = 4
-vframes = 8
-frame = 20
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
-initial_state = NodePath("Idle")
+initial_state = NodePath("Cutscene")
 
 [node name="Cutscene" type="Node" parent="StateMachine"]
 script = ExtResource( 1 )
@@ -452,6 +452,61 @@ script = ExtResource( 4 )
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[node name="SpriteBottom" type="Sprite" parent="."]
+light_mask = 2
+position = Vector2( 0, -14 )
+texture = ExtResource( 7 )
+normal_map = ExtResource( 8 )
+hframes = 4
+vframes = 10
+
+[node name="SpriteTop" type="Sprite" parent="."]
+light_mask = 2
+position = Vector2( 0, -14 )
+texture = ExtResource( 7 )
+normal_map = ExtResource( 8 )
+hframes = 4
+vframes = 10
+frame = 4
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 10 )
+texture_scale = 0.15
+range_item_cull_mask = 5
+
+[node name="ShootingPlayer" type="AnimationPlayer" parent="."]
+anims/Melee = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="Pivot" type="Position2D" parent="."]
+position = Vector2( 0, -16 )
+
+[node name="Melee" type="Area2D" parent="Pivot"]
+position = Vector2( -23, 0 )
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Melee"]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Pivot"]
+position = Vector2( -23, 0 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 6 )
+hframes = 8
+
+[node name="Light2D" type="Light2D" parent="Pivot"]
+texture = ExtResource( 9 )
+offset = Vector2( -60, 0 )
+texture_scale = 0.5
+range_item_cull_mask = 5
+shadow_enabled = true
+shadow_gradient_length = 1.0
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+shadow_item_cull_mask = 5
 
 [node name="AnimationPlayerBottom" type="AnimationPlayer" parent="."]
 anims/Idle_Down = SubResource( 9 )
@@ -488,23 +543,10 @@ parameters/blend_position = Vector2( 0, 0 )
 position = Vector2( 0, -16 )
 current = true
 
-[node name="Pivot" type="Position2D" parent="."]
-position = Vector2( 0, -16 )
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 2
+occluder = SubResource( 38 )
+light_mask = 2
 
-[node name="Melee" type="Area2D" parent="Pivot"]
-position = Vector2( -23, 0 )
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Melee"]
-shape = SubResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="Pivot"]
-position = Vector2( -23, 0 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 6 )
-hframes = 8
-
-[node name="ShootingPlayer" type="AnimationPlayer" parent="."]
-anims/Melee = SubResource( 5 )
-anims/RESET = SubResource( 6 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
