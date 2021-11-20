@@ -6,6 +6,7 @@ extends KinematicBody2D
 export var ACCELERATION: float = 1000.0
 export var MAX_SPEED: float = 150.0
 export var FRICTION: float = 1000.0
+export var MAX_LIFE: int = 100
 
 export var direction_locked := false
 

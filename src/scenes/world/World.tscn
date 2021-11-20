@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/world/map.png" type="Texture" id=1]
 [ext_resource path="res://actors/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/world/sea.png" type="Texture" id=3]
 [ext_resource path="res://actors/static/campfire/Campfire.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/world/Navigation2D.gd" type="Script" id=5]
-[ext_resource path="res://actors/Mobs/Mob.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/MainMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/world/Director.gd" type="Script" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 740, 206, 755, 248, 750, 316, 733, 361, 726, 366, 242, 338, 242, 321, 719, 176, 715, 383, 678, 405, 633, 421, 499, 393, 700, 133, 227, 292, 648, 32, 667, 43, 681, 58, 693, 77, 698, 98, 629, 30, 559, 21, 604, 22, 515, 31, 456, 33, 483, 30, 417, 50, 370, 64, 331, 68, 288, 72, 180, 267, 255, 67, 234, 66, 202, 61, 20, 136, 24, 111, 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 138, 268, 24, 168, 28, 208, 109, 274, 32, 261, 87, 286, 33, 274, 19, 302, 77, 309, 9, 355, 76, 334, 11, 391, 46, 420, 24, 410, 94, 360, 101, 421, 124, 372, 145, 416, 179, 372, 186, 409, 204, 366, 275, 409, 231, 352, 321, 404, 372, 395, 421, 392, 533, 402, 509, 399, 573, 414, 550, 411, 592, 421 )
@@ -32,7 +33,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 596, 70 )
+position = Vector2( 602, 202 )
 
 [node name="Border" type="StaticBody2D" parent="."]
 visible = false
@@ -53,11 +54,64 @@ script = ExtResource( 5 )
 navpoly = SubResource( 1 )
 
 [node name="Campfire" parent="." instance=ExtResource( 4 )]
-position = Vector2( 616, 59 )
+position = Vector2( 639, 223 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
-color = Color( 0.2, 0.0235294, 0.0235294, 1 )
+color = Color( 0.352941, 0.105882, 0.117647, 1 )
 
-[node name="Mob" parent="." instance=ExtResource( 6 )]
-position = Vector2( 455, 86 )
+[node name="Director" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Spawners" type="Node2D" parent="Director"]
+
+[node name="Position2D" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 476, 69 )
+
+[node name="Position2D2" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 636, 74 )
+
+[node name="Position2D3" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 666, 176 )
+
+[node name="Position2D4" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 685, 331 )
+
+[node name="Position2D5" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 518, 258 )
+
+[node name="Position2D6" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 282, 113 )
+
+[node name="Position2D7" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 92, 102 )
+
+[node name="Position2D8" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 78, 238 )
+
+[node name="Position2D9" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 308, 369 )
+
+[node name="Position2D10" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 254, 238 )
+
+[node name="Position2D11" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 460, 345 )
+
+[node name="Position2D12" type="Position2D" parent="Director/Spawners"]
+position = Vector2( 397, 195 )
+
+[node name="Income" type="Timer" parent="Director"]
+wait_time = 5.0
+
+[node name="Spawn" type="Timer" parent="Director"]
+wait_time = 0.1
+autostart = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="MainMenu" parent="UI" instance=ExtResource( 6 )]
+
+[connection signal="timeout" from="Director/Income" to="Director" method="_on_Income_timeout"]
+[connection signal="timeout" from="Director/Spawn" to="Director" method="_on_Spawn_timeout"]
