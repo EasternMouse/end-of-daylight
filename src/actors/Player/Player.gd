@@ -8,9 +8,28 @@ export var MAX_SPEED: float = 150.0
 export var FRICTION: float = 1000.0
 export var MAX_LIFE: int = 100
 
-export var melee_damage: int = 1
-
 export var direction_locked := false
+
+
+var weapons := {
+	melee = {
+		name = "melee",
+		damage = 3,
+		ammo = 0,
+		uses_ammo = false,
+		unlocked = true,
+	},
+	seal = {
+		name = "seal",
+		damage = 1,
+		ammo = 0,
+		uses_ammo = false,
+		unlocked = true,
+	},
+}
+
+var current_weapon = weapons.seal
+
 
 var input_vector: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
@@ -50,4 +69,8 @@ func _physics_process(_delta: float) -> void:
 
 func melee_attack() -> void:
 	for area in melee_hitbox.get_overlapping_areas():
-		area.damage(melee_damage, Vector2(-cos(pivot.rotation), sin(pivot.rotation)))
+		area.damage(weapons.melee.damage, Vector2(-cos(pivot.rotation), sin(pivot.rotation)))
+
+
+func bullet_attack() -> void:
+	pass

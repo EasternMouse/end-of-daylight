@@ -23,4 +23,4 @@ func physics_update(_delta: float) -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
-		player.shgooting_player.play("Melee")
+		player.shgooting_player.play(player.current_weapon.name)

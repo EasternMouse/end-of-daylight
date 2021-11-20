@@ -6,7 +6,7 @@ var spawn_points = []
 
 var mobs := [
 	{cost = 1,
-	scene = preload("res://actors/Mobs/Fairy/Fairy.tscn"),
+	scene = preload("res://actors/Mobs/Fairy/FairyGreen.tscn"),
 	},
 ]
 

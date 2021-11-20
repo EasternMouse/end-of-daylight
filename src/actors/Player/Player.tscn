@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://actors/Player/Cutscene.gd" type="Script" id=1]
 [ext_resource path="res://actors/Player/StateMachine.gd" type="Script" id=2]
@@ -11,8 +11,47 @@
 [ext_resource path="res://shaders/flashlight.tres" type="Texture" id=9]
 [ext_resource path="res://shaders/light.tres" type="Texture" id=10]
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Melee:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:direction_locked")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=5]
-resource_name = "Melee"
+resource_name = "melee"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
@@ -64,10 +103,11 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Sprite:frame")
+[sub_resource type="Animation" id=39]
+resource_name = "seal"
+length = 0.3
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -75,36 +115,14 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/Melee:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:direction_locked")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
+"values": [ {
+"args": [  ],
+"method": "bullet_attack"
+} ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 12, 18 )
+extents = Vector2( 26, 20 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "Idle_Down"
@@ -476,14 +494,15 @@ texture_scale = 0.15
 range_item_cull_mask = 5
 
 [node name="ShootingPlayer" type="AnimationPlayer" parent="."]
-anims/Melee = SubResource( 5 )
 anims/RESET = SubResource( 6 )
+anims/melee = SubResource( 5 )
+anims/seal = SubResource( 39 )
 
 [node name="Pivot" type="Position2D" parent="."]
 position = Vector2( 0, -16 )
 
 [node name="Melee" type="Area2D" parent="Pivot"]
-position = Vector2( -23, 0 )
+position = Vector2( -18, 0 )
 collision_layer = 0
 collision_mask = 512
 monitorable = false
