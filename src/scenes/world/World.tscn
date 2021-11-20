@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/world/map.png" type="Texture" id=1]
 [ext_resource path="res://actors/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/world/sea.png" type="Texture" id=3]
+[ext_resource path="res://actors/static/campfire/Campfire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/world/Navigation2D.gd" type="Script" id=5]
+[ext_resource path="res://actors/Mobs/Mob.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 740, 206, 755, 248, 750, 316, 733, 361, 726, 366, 242, 338, 242, 321, 719, 176, 715, 383, 678, 405, 633, 421, 499, 393, 700, 133, 227, 292, 648, 32, 667, 43, 681, 58, 693, 77, 698, 98, 629, 30, 559, 21, 604, 22, 515, 31, 456, 33, 483, 30, 417, 50, 370, 64, 331, 68, 288, 72, 180, 267, 255, 67, 234, 66, 202, 61, 20, 136, 24, 111, 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 138, 268, 24, 168, 28, 208, 109, 274, 32, 261, 87, 286, 33, 274, 19, 302, 77, 309, 9, 355, 76, 334, 11, 391, 46, 420, 24, 410, 94, 360, 101, 421, 124, 372, 145, 416, 179, 372, 186, 409, 204, 366, 275, 409, 231, 352, 321, 404, 372, 395, 421, 392, 533, 402, 509, 399, 573, 414, 550, 411, 592, 421 )
@@ -12,9 +15,11 @@ outlines = [ PoolVector2Array( 31, 100, 43, 84, 79, 64, 100, 56, 160, 54, 202, 6
 [node name="World" type="YSort"]
 
 [node name="Sea" type="TextureRect" parent="."]
+light_mask = 0
 margin_top = -33.0
 margin_right = 768.0
 margin_bottom = 111.0
+mouse_filter = 2
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
@@ -27,7 +32,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 574, 24 )
+position = Vector2( 596, 70 )
 
 [node name="Border" type="StaticBody2D" parent="."]
 visible = false
@@ -42,6 +47,17 @@ polygon = PoolVector2Array( 151, 273, 180, 273, 198, 281, 214, 290, 224, 297, 23
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 visible = false
+script = ExtResource( 5 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 navpoly = SubResource( 1 )
+
+[node name="Campfire" parent="." instance=ExtResource( 4 )]
+position = Vector2( 616, 59 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color( 0.2, 0.0235294, 0.0235294, 1 )
+
+[node name="Mob" parent="." instance=ExtResource( 6 )]
+position = Vector2( 455, 86 )
