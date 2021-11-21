@@ -11,8 +11,8 @@
 [ext_resource path="res://actors/Mobs/enemy_strike.png" type="Texture" id=9]
 [ext_resource path="res://actors/Mobs/crunch.wav" type="AudioStream" id=10]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 9.05539
+[sub_resource type="CircleShape2D" id=13]
+radius = 3.60555
 
 [sub_resource type="Animation" id=5]
 resource_name = "Jumping_Speed"
@@ -249,17 +249,17 @@ tracks/2/keys = {
 }
 
 [sub_resource type="OccluderPolygon2D" id=7]
-polygon = PoolVector2Array( -12, 0, -6, -6, 0, -7, 6, -6, 12, 0, 7, 6, 0, 7, -7, 6 )
+polygon = PoolVector2Array( -3, 0, -2, -2, 0, -3, 2, -2, 3, 0, 2, 2, 0, 3, -2, 2 )
 
-[sub_resource type="CircleShape2D" id=8]
-radius = 13.0384
+[sub_resource type="CircleShape2D" id=14]
+radius = 5.09902
 
-[sub_resource type="CapsuleShape2D" id=10]
-radius = 16.9999
-height = 14.0001
-
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=15]
 radius = 8.0
+height = 6.00001
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 5.0
 
 [node name="Mob" type="KinematicBody2D" groups=["Mobs"]]
 collision_layer = 256
@@ -269,7 +269,7 @@ max_life = 3
 damage = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
@@ -298,7 +298,7 @@ monitoring = false
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource( 8 )
+shape = SubResource( 14 )
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -320,7 +320,7 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 rotation = 1.5708
-shape = SubResource( 10 )
+shape = SubResource( 15 )
 
 [node name="Pivot" type="Position2D" parent="."]
 position = Vector2( 0, -8 )
@@ -338,7 +338,7 @@ collision_mask = 32
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Melee"]
-shape = SubResource( 11 )
+shape = SubResource( 16 )
 
 [node name="RandomAudioStreamPlayerMelee" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0

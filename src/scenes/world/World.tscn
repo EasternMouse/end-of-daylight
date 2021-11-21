@@ -172,10 +172,10 @@ texture = ExtResource( 15 )
 
 [node name="Sea" type="TextureRect" parent="."]
 light_mask = 0
-margin_left = -144.0
-margin_top = -33.0
-margin_right = 911.0
-margin_bottom = 111.0
+margin_left = -140.0
+margin_top = -34.0
+margin_right = 915.0
+margin_bottom = 110.0
 mouse_filter = 2
 texture = ExtResource( 3 )
 expand = true
@@ -909,40 +909,40 @@ script = ExtResource( 7 )
 
 [node name="Spawners" type="Node2D" parent="Director"]
 
-[node name="Position2D" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 476, 69 )
 
-[node name="Position2D2" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D2" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 636, 74 )
 
-[node name="Position2D3" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D3" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 666, 176 )
 
-[node name="Position2D4" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D4" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 685, 331 )
 
-[node name="Position2D5" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D5" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 518, 258 )
 
-[node name="Position2D6" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D6" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 282, 113 )
 
-[node name="Position2D7" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D7" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 92, 102 )
 
-[node name="Position2D8" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D8" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 78, 238 )
 
-[node name="Position2D9" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D9" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 308, 369 )
 
-[node name="Position2D10" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D10" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 254, 238 )
 
-[node name="Position2D11" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D11" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 460, 345 )
 
-[node name="Position2D12" type="Position2D" parent="Director/Spawners"]
+[node name="Position2D12" type="VisibilityNotifier2D" parent="Director/Spawners"]
 position = Vector2( 397, 195 )
 
 [node name="Income" type="Timer" parent="Director"]

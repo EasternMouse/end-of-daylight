@@ -76,9 +76,10 @@ func spawn_item() -> void:
 
 
 func _on_PlayerDetector_area_entered(area: Area2D) -> void:
-	if path.size() > 0:
-		pivot.rotation = position.direction_to(path[0]).angle()
-	$AnimationPlayer.play("melee")
+	if not $AnimationPlayer.current_animation() == "die":
+		if path.size() > 0:
+			pivot.rotation = position.direction_to(path[0]).angle()
+		$AnimationPlayer.play("melee")
 
 
 func melee_attack() -> void:

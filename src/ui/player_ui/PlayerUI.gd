@@ -17,8 +17,6 @@ func _ready() -> void:
 
 
 func game_start() -> void:
-	for node in $VBoxContainer/Weapons.get_children():
-		node.modulate = Color.darkslategray
 	tween.interpolate_property(self, "modulate", modulate, Color.white, 3)
 	tween.start()
 	$SecondTimer.start()

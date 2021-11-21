@@ -35,7 +35,7 @@ var mobs := [
 
 func _ready() -> void:
 	for point in $Spawners.get_children():
-		spawn_points.append(point.global_position)
+		spawn_points.append(point)
 	Events.connect("game_start", self, "game_start")
 	Events.connect("game_over", self, "game_over")
 
@@ -54,8 +54,10 @@ func _on_Spawn_timeout() -> void:
 		credit -= mob.cost
 		
 		var spawn_point = spawn_points[randi()%spawn_points.size()]
+		if spawn_point.is_on_screen():
+			spawn_point = spawn_points[randi()%spawn_points.size()]
 		var mob_obj = mob.scene.instance()
-		mob_obj.global_position = spawn_point
+		mob_obj.global_position = spawn_point.global_position
 		add_child(mob_obj)
 
 

@@ -74,6 +74,7 @@ rect_min_size = Vector2( 0, 16 )
 alignment = 1
 
 [node name="melee" type="Panel" parent="VBoxContainer/Weapons"]
+modulate = Color( 0.180392, 0.309804, 0.309804, 1 )
 margin_left = 110.0
 margin_right = 126.0
 margin_bottom = 28.0
@@ -108,6 +109,7 @@ __meta__ = {
 }
 
 [node name="seal" type="Panel" parent="VBoxContainer/Weapons"]
+modulate = Color( 0.180392, 0.309804, 0.309804, 1 )
 margin_left = 130.0
 margin_right = 146.0
 margin_bottom = 28.0
@@ -142,6 +144,7 @@ __meta__ = {
 
 [node name="needle" type="Panel" parent="VBoxContainer/Weapons"]
 visible = false
+modulate = Color( 0.180392, 0.309804, 0.309804, 1 )
 margin_left = 139.0
 margin_right = 157.0
 margin_bottom = 27.366
