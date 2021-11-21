@@ -1,9 +1,21 @@
 extends ColorRect
 
+onready var bgm_bus := AudioServer.get_bus_index("BGM")
+onready var se_bus := AudioServer.get_bus_index("SE")
+
+onready var bgm_slider := $Settings/VBoxContainer/Music
+onready var se_slider := $Settings/VBoxContainer/Sound
+
 onready var tween = $Tween
 
 func _ready() -> void:
 	$HowTo.rect_position = Vector2(0, 144)
+	
+	AudioServer.set_bus_volume_db(se_bus, linear2db(0.7))
+	AudioServer.set_bus_volume_db(bgm_bus, linear2db(0.7))
+	
+	bgm_slider.value = db2linear(AudioServer.get_bus_volume_db(bgm_bus))
+	se_slider.value = db2linear(AudioServer.get_bus_volume_db(se_bus))
 
 
 func _on_ButtonStart_pressed() -> void:
@@ -30,4 +42,8 @@ func _on_ButtonBack_pressed() -> void:
 
 
 func _on_Sound_value_changed(value: float) -> void:
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_db(se_bus, linear2db(value))
+
+
+func _on_Music_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(bgm_bus, linear2db(value))

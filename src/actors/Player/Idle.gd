@@ -22,5 +22,6 @@ func physics_update(_delta: float) -> void:
 		state_machine.transition_to("Run")
 	
 	if Input.is_action_pressed("attack"):
-		player.shgooting_player.play(player.current_weapon.name)
+		if not player.shgooting_player.is_playing():
+			player.shgooting_player.play(player.current_weapon.name)
 

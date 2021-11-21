@@ -5,9 +5,9 @@ var items = {
 
 var timed_items = {
 	weapon_needle = {
-		time = 1,
+		time = 20,
 		name = "weapon_needle",
-		weight = 0.15,
+		weight = 0.25,
 		sprite = preload("res://ui/player_ui/weapon_needle.png"),
 		amount = 10,
 	}
