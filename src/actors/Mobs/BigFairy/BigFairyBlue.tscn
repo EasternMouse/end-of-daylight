@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Mobs/BigFairy/BigFairy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/Mobs/BigFairy/big_fairy_b.png" type="Texture" id=2]
+
+[node name="BigFairyBlue" instance=ExtResource( 1 )]
+max_life = 20
+speed = 200
+damage = 10
+item_multiplier = 2.0
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

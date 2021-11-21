@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/YujiBoku26.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/GaveOverScreen.gd" type="Script" id=3]
+[ext_resource path="res://ui/YujiBoku14_wide.tres" type="DynamicFont" id=4]
+[ext_resource path="res://shaders/CRT.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -166,6 +168,7 @@ margin_top = 27.0
 margin_right = 256.0
 margin_bottom = 46.0
 custom_colors/default_color = Color( 0.811765, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center][shake rate=20 level=5]Light is no more[/shake][/center]"
 text = "Light is no more"
@@ -204,5 +207,7 @@ margin_top = 126.0
 margin_right = 256.0
 margin_bottom = 144.0
 text = "To    main    menu"
+
+[node name="CRT" parent="." instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

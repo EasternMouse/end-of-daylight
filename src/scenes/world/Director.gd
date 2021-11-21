@@ -20,7 +20,15 @@ var mobs := [
 	},
 	{
 		cost = 10,
-		scene = preload("res://actors/Mobs/BigFairy/BigFairy.tscn"),
+		scene = preload("res://actors/Mobs/BigFairy/BigFairyGreen.tscn"),
+	},
+	{
+		cost = 28,
+		scene = preload("res://actors/Mobs/BigFairy/BigFairyBlue.tscn"),
+	},
+	{
+		cost = 60,
+		scene = preload("res://actors/Mobs/BigFairy/BigFairyRed.tscn"),
 	},
 ]
 

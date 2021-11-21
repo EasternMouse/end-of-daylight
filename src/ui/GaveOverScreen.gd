@@ -7,11 +7,12 @@ var flavour_text = [
 	"You was our last light",
 	"Endless darkness",
 	"You can't see a thing anymore",
-	"Aline in the dark",
+	"Alone in the dark",
 	"Not alone in the dark",
 	"No more light",
 	"Deaf to all but the dark",
 	"Nothing to see now",
+	"Welcome to Shadow Realm",
 ]
 
 
