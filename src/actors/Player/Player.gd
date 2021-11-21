@@ -8,6 +8,8 @@ export var MAX_SPEED: float = 150.0
 export var FRICTION: float = 1000.0
 export var MAX_LIFE: int = 100
 
+onready var life := MAX_LIFE
+
 export var direction_locked := false
 
 
@@ -32,7 +34,7 @@ var weapons := {
 	needle = {
 		name = "needle",
 		damage = 1,
-		ammo = 50,
+		ammo = 10,
 		uses_ammo = true,
 		unlocked = false,
 		cx = 20,
@@ -42,7 +44,7 @@ var weapons := {
 	orb = {
 		name = "orb",
 		damage = 110,
-		ammo = 10,
+		ammo = 3,
 		uses_ammo = true,
 		unlocked = false,
 		cx = 10,
@@ -65,6 +67,7 @@ onready var animation_tree_bottom: AnimationTree = $AnimationTreeBottom
 onready var animation_state_bottom: AnimationNodeStateMachinePlayback = animation_tree_bottom.get("parameters/playback")
 onready var animation_player_top: AnimationPlayer = $AnimationPlayerTop
 onready var animation_tree_top: AnimationTree = $AnimationTreeTop
+onready var animation_state_top: AnimationNodeStateMachinePlayback = animation_tree_top.get("parameters/playback")
 onready var shgooting_player: AnimationPlayer = $ShootingPlayer
 onready var pivot: Position2D = $Pivot
 onready var sprite_bottom: Sprite = $SpriteBottom
@@ -75,12 +78,10 @@ onready var melee_hitbox := $Pivot/Melee
 onready var random := RandomNumberGenerator.new()
 
 func _ready() -> void:
-	animation_tree_bottom.active = true
 	animation_tree_bottom.set("parameters/Idle/blend_position", Vector2.DOWN)
 	animation_tree_bottom.set("parameters/Run/blend_position", Vector2.DOWN)
 	
-	animation_tree_top.active = true
-	animation_tree_top.set("parameters/blend_position", Vector2.DOWN)
+	animation_tree_top.set("parameters/Aim/blend_position", Vector2.DOWN)
 	
 	Events.connect("game_start", self, "game_start")
 	
@@ -107,6 +108,9 @@ func _input(event: InputEvent) -> void:
 
 
 func game_start():
+	animation_tree_bottom.active = true
+	animation_tree_top.active = true
+	
 	state_machine.transition_to("Idle")
 	Events.emit_signal("weapon_choose", "seal")
 
@@ -116,8 +120,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func melee_attack() -> void:
+	var did_hit = false
 	for area in melee_hitbox.get_overlapping_areas():
-		area.damage(weapons.melee.damage, Vector2(-cos(pivot.rotation), sin(pivot.rotation)))
+		area.damage(weapons.melee.damage, -Vector2(cos(pivot.rotation), sin(pivot.rotation)))
+		did_hit = true
+	if did_hit:
+		$ShootingPlayer/RandomAudioStreamPlayer.play()
 
 
 func bullet_attack() -> void:
@@ -145,8 +153,21 @@ func _on_PickupArea2D_area_entered(area: Area2D) -> void:
 		pass
 	if area.item.name == "weapon_needle":
 		var weapon = weapons.needle
-		weapon.unlocked = true
+		if not weapon.unlocked:
+			weapon.unlocked = true
+			Events.emit_signal("weapon_unlocked", weapon.name)
 		weapon.ammo += area.item.amount
-		Events.emit_signal("weapon_unlocked", weapon.name)
 		Events.emit_signal("weapon_ammo", weapon.name, weapon.ammo)
 	area.queue_free()
+
+
+func damage(damage_value) -> void:
+	if state_machine.state.name != "Cutscene":
+		life -= damage_value
+		Events.emit_signal("player_life", life)
+		if life <= 0:
+			state_machine.transition_to("Cutscene")
+			animation_player_top.play_backwards("Sit")
+			animation_player_bottom.play_backwards("Sit")
+			Events.emit_signal("game_over")
+			

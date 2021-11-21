@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://actors/Player/Cutscene.gd" type="Script" id=1]
 [ext_resource path="res://actors/Player/StateMachine.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://actors/Player/reimu_n.png" type="Texture" id=8]
 [ext_resource path="res://shaders/flashlight.tres" type="Texture" id=9]
 [ext_resource path="res://shaders/light.tres" type="Texture" id=10]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=11]
+[ext_resource path="res://actors/Player/gun_sound/melee.wav" type="AudioStream" id=12]
+[ext_resource path="res://actors/Player/Hurtbox.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -105,7 +108,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=41]
 resource_name = "needle"
-length = 0.5
+length = 0.7
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -222,7 +225,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 32 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Light2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -293,6 +308,33 @@ tracks/0/keys = {
 "values": [ 25, 26, 27, 24 ]
 }
 
+[sub_resource type="Animation" id=42]
+resource_name = "Sit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteBottom:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Light2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Idle_Left"
 
@@ -341,18 +383,26 @@ blend_point_3/pos = Vector2( 0, -1 )
 snap = Vector2( 1, 1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "Sit"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=2]
 states/Idle/node = SubResource( 20 )
 states/Idle/position = Vector2( 253, 67 )
 states/Run/node = SubResource( 25 )
 states/Run/position = Vector2( 506, 67 )
-transitions = [ "Idle", "Run", SubResource( 26 ), "Run", "Idle", SubResource( 27 ) ]
-start_node = "Idle"
-graph_offset = Vector2( -117, -38 )
+states/Sit/node = SubResource( 46 )
+states/Sit/position = Vector2( 94, 64 )
+transitions = [ "Idle", "Run", SubResource( 26 ), "Run", "Idle", SubResource( 27 ), "Sit", "Idle", SubResource( 47 ) ]
+start_node = "Sit"
+graph_offset = Vector2( -173, -13 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
@@ -402,7 +452,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 4 ]
+"values": [ 36 ]
 }
 
 [sub_resource type="Animation" id=31]
@@ -422,6 +472,21 @@ tracks/0/keys = {
 "values": [ 12 ]
 }
 
+[sub_resource type="Animation" id=43]
+resource_name = "Sit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteTop:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38 ]
+}
+
 [sub_resource type="Animation" id=32]
 resource_name = "Up"
 length = 0.1
@@ -439,29 +504,45 @@ tracks/0/keys = {
 "values": [ 28 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "Left"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
-animation = "Down"
-
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=49]
 animation = "Right"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=50]
+animation = "Down"
+
+[sub_resource type="AnimationNodeAnimation" id=51]
 animation = "Up"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=37]
-blend_point_0/node = SubResource( 33 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=52]
+blend_point_0/node = SubResource( 48 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 34 )
-blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 35 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 36 )
+blend_point_1/node = SubResource( 49 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 50 )
+blend_point_2/pos = Vector2( 0, 1 )
+blend_point_3/node = SubResource( 51 )
 blend_point_3/pos = Vector2( 0, -1 )
 snap = Vector2( 1, 1 )
 blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "Sit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=44]
+states/Aim/node = SubResource( 52 )
+states/Aim/position = Vector2( 558, 79 )
+states/Sit/node = SubResource( 53 )
+states/Sit/position = Vector2( 354, 116 )
+transitions = [ "Sit", "Aim", SubResource( 54 ) ]
+start_node = "Sit"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
 
 [sub_resource type="OccluderPolygon2D" id=38]
 polygon = PoolVector2Array( -4, 0, -3, -3, 0, -4, 3, -3, 4, 0, 3, 3, 0, 4, -3, 3 )
@@ -471,6 +552,10 @@ radius = 7.0
 
 [sub_resource type="CircleShape2D" id=40]
 radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id=55]
+radius = 3.0
+height = 6.0
 
 [node name="Player" type="KinematicBody2D"]
 light_mask = 2
@@ -499,6 +584,7 @@ texture = ExtResource( 7 )
 normal_map = ExtResource( 8 )
 hframes = 4
 vframes = 10
+frame = 32
 
 [node name="SpriteTop" type="Sprite" parent="."]
 light_mask = 2
@@ -507,7 +593,7 @@ texture = ExtResource( 7 )
 normal_map = ExtResource( 8 )
 hframes = 4
 vframes = 10
-frame = 4
+frame = 36
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 10 )
@@ -520,6 +606,14 @@ anims/melee = SubResource( 5 )
 anims/needle = SubResource( 41 )
 anims/seal = SubResource( 39 )
 
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="ShootingPlayer"]
+volume_db = -10.0
+bus = "SE"
+script = ExtResource( 11 )
+samples = [ ExtResource( 12 ) ]
+random_volume_range = 1.0
+random_pitch_range = 1.0
+
 [node name="Pivot" type="Position2D" parent="."]
 position = Vector2( 0, -16 )
 
@@ -530,6 +624,7 @@ collision_mask = 512
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Melee"]
+visible = false
 shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Pivot"]
@@ -539,6 +634,7 @@ texture = ExtResource( 6 )
 hframes = 8
 
 [node name="Light2D" type="Light2D" parent="Pivot"]
+enabled = false
 texture = ExtResource( 9 )
 offset = Vector2( -60, 0 )
 texture_scale = 0.5
@@ -559,6 +655,7 @@ anims/Run_Down = SubResource( 8 )
 anims/Run_Left = SubResource( 14 )
 anims/Run_Right = SubResource( 13 )
 anims/Run_Up = SubResource( 15 )
+anims/Sit = SubResource( 42 )
 
 [node name="AnimationTreeBottom" type="AnimationTree" parent="."]
 tree_root = SubResource( 2 )
@@ -572,13 +669,14 @@ anims/Down = SubResource( 28 )
 anims/Left = SubResource( 29 )
 anims/RESET = SubResource( 30 )
 anims/Right = SubResource( 31 )
+anims/Sit = SubResource( 43 )
 anims/Up = SubResource( 32 )
 
 [node name="AnimationTreeTop" type="AnimationTree" parent="."]
-tree_root = SubResource( 37 )
+tree_root = SubResource( 44 )
 anim_player = NodePath("../AnimationPlayerTop")
-active = true
-parameters/blend_position = Vector2( 0, 0 )
+parameters/playback = SubResource( 45 )
+parameters/Aim/blend_position = Vector2( 0, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -16 )
@@ -599,5 +697,14 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 shape = SubResource( 40 )
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2( 0, -16 )
+collision_layer = 32
+collision_mask = 0
+script = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource( 55 )
 
 [connection signal="area_entered" from="PickupArea2D" to="." method="_on_PickupArea2D_area_entered"]

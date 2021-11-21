@@ -3,7 +3,7 @@ extends ColorRect
 onready var tween = $Tween
 
 func _ready() -> void:
-	pass
+	$HowTo.rect_position = Vector2(0, 144)
 
 
 func _on_ButtonStart_pressed() -> void:
@@ -15,4 +15,14 @@ func _on_ButtonStart_pressed() -> void:
 
 
 func _on_ButtonQuit_pressed() -> void:
-	pass
+	get_tree().quit()
+
+
+func _on_ButtonHowTo_pressed() -> void:
+	tween.interpolate_property($HowTo, "rect_position", Vector2(0, 144), Vector2(0, 0), 0.5)
+	tween.start()
+
+
+func _on_ButtonBack_pressed() -> void:
+	tween.interpolate_property($HowTo, "rect_position", Vector2(0, 0), Vector2(0, 144), 0.5)
+	tween.start()

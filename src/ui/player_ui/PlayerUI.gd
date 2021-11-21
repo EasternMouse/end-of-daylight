@@ -12,6 +12,8 @@ func _ready() -> void:
 	Events.connect("weapon_unlocked", self, "weapon_unlocked")
 	Events.connect("weapon_ammo", self, "weapon_ammo")
 	Events.connect("game_start", self, "game_start")
+	Events.connect("game_over", self, "game_over")
+	Events.connect("player_life", self, "player_life")
 
 
 func game_start() -> void:
@@ -45,3 +47,12 @@ func _on_SecondTimer_timeout() -> void:
 	label_time.text = String("%02d" % minutes) + ":" + String("%02d" % seconds)
 	
 	Events.emit_signal("time", time)
+
+
+func player_life(life) -> void:
+	$VBoxContainer/Life/Left.value = life
+	$VBoxContainer/Life/Right.value = life
+
+
+func game_over() -> void:
+	SaveLoad.time = time

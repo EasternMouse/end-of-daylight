@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/melee.wav-b2fd382f23e3ff753942bdeb2dc40e1e.sample"
+
+[deps]
+
+source_file="res://actors/Player/gun_sound/melee.wav"
+dest_files=[ "res://.import/melee.wav-b2fd382f23e3ff753942bdeb2dc40e1e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

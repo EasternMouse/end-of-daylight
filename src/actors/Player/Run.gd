@@ -15,7 +15,7 @@ func physics_update(delta: float) -> void:
 	if not player.direction_locked:
 		var mouse_pos = get_viewport().get_mouse_position()
 		player.pivot.rotation = (get_viewport().size/2).angle_to_point(mouse_pos)
-		player.animation_tree_top.set("parameters/blend_position", -Vector2(cos(player.pivot.rotation), sin(player.pivot.rotation)).normalized())
+		player.animation_tree_top.set("parameters/Aim/blend_position", -Vector2(cos(player.pivot.rotation), sin(player.pivot.rotation)).normalized())
 	
 	if player.input_vector != Vector2.ZERO:
 		player.velocity = player.velocity.move_toward(player.input_vector * player.MAX_SPEED, player.ACCELERATION * delta)

@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/bullets/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://actors/bullets/white_hit_particle_material.tres" type="Material" id=2]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=3]
+[ext_resource path="res://actors/Player/gun_sound/gun_2.wav" type="AudioStream" id=4]
+[ext_resource path="res://actors/Player/gun_sound/gun_3.wav" type="AudioStream" id=5]
+[ext_resource path="res://actors/Player/gun_sound/gun_0.wav" type="AudioStream" id=6]
+[ext_resource path="res://actors/Player/gun_sound/gun_1.wav" type="AudioStream" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -26,6 +31,7 @@ amount = 16
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+visibility_rect = Rect2( -50, -50, 100, 100 )
 local_coords = false
 process_material = ExtResource( 2 )
 
@@ -33,6 +39,13 @@ process_material = ExtResource( 2 )
 wait_time = 0.6
 one_shot = true
 autostart = true
+
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+bus = "SE"
+script = ExtResource( 3 )
+samples = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ]
+random_volume_range = 1.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="TimerDeath" to="." method="_on_TimerDeath_timeout"]

@@ -57,6 +57,10 @@ window/size/test_height=576
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/randomAudioStreamPlayer/plugin.cfg" )
+
 [importer_defaults]
 
 texture={

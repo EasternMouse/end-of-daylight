@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var transition_in_progress := false
 
+var time := 0
+
 onready var color_rect := $ColorRect
 onready var tween := $Tween
 

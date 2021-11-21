@@ -7,6 +7,7 @@ var red_particle = preload("res://actors/bullets/red_hit_particle_material.tres"
 
 func _ready() -> void:
 	$Particles2D.emitting = true
+	$RandomAudioStreamPlayer.play()
 
 
 func _physics_process(delta: float) -> void:

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gun_1.wav-93e528a83cf3ee83e6d281909ca12f2f.sample"
+
+[deps]
+
+source_file="res://actors/Player/gun_sound/gun_1.wav"
+dest_files=[ "res://.import/gun_1.wav-93e528a83cf3ee83e6d281909ca12f2f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

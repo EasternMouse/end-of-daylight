@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Mobs/Fairy/Fairy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/Mobs/Fairy/fairy_r.png" type="Texture" id=2]
+
+[node name="FairyRed" instance=ExtResource( 1 )]
+max_life = 30
+speed = 40
+damage = 10
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

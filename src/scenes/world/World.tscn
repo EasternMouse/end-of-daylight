@@ -14,7 +14,7 @@
 [ext_resource path="res://actors/static/tree/tree.png" type="Texture" id=12]
 [ext_resource path="res://actors/static/tree/tree_n.png" type="Texture" id=13]
 [ext_resource path="res://scenes/world/sky.png" type="Texture" id=14]
-[ext_resource path="res://actors/items/ItemDrop.tscn" type="PackedScene" id=15]
+[ext_resource path="res://shaders/Light1.png" type="Texture" id=15]
 
 [sub_resource type="OccluderPolygon2D" id=4]
 polygon = PoolVector2Array( 12, 47, 16, 46, 20, 47, 16, 48 )
@@ -80,6 +80,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 0.894118, 0.490196, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sun:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 701, -36 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Sunset"
@@ -94,7 +106,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 20.1, 30 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.352941, 0.105882, 0.117647, 1 ) ]
+"values": [ Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.458824, 0.298039, 0.305882, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sun/Light2D:energy")
@@ -103,10 +115,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 20.1, 30 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 20.1, 30 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 1.0, 0.0 ]
+"values": [ 1.0, 1.0, 0.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sun/Light2D:color")
@@ -120,17 +132,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 0.937255, 0, 1 ), Color( 1, 0.541176, 0.172549, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sun:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 701, -36 ), Vector2( 752, 17 ) ]
+}
 
 [node name="World" type="YSort" groups=["world"]]
 script = ExtResource( 9 )
 
-[node name="Sun" type="Node2D" parent="."]
-position = Vector2( 662, -18 )
+[node name="AmbientLight2D" type="Light2D" parent="."]
+position = Vector2( 577, -110 )
+texture = ExtResource( 8 )
+texture_scale = 4.48
+mode = 2
+range_item_cull_mask = 2
+
+[node name="Sun" type="YSort" parent="."]
+position = Vector2( 701, -36 )
+z_index = -1
+sort_enabled = false
 
 [node name="Light2D" type="Light2D" parent="Sun"]
 texture = ExtResource( 8 )
 texture_scale = 10.0
 color = Color( 1, 0.894118, 0.490196, 1 )
+
+[node name="Sprite" type="Sprite" parent="Sun"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 15 )
 
 [node name="Sea" type="TextureRect" parent="."]
 light_mask = 0
@@ -146,12 +183,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sky" type="TextureRect" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, -1 )
+z_index = -2
+
+[node name="Sky" type="TextureRect" parent="Node2D"]
 light_mask = 0
-margin_left = -145.0
-margin_top = -147.0
-margin_right = 910.0
-margin_bottom = -3.0
+margin_left = -144.0
+margin_top = -142.0
+margin_right = 911.0
+margin_bottom = 2.0
 mouse_filter = 2
 texture = ExtResource( 14 )
 expand = true
@@ -161,11 +202,12 @@ __meta__ = {
 }
 
 [node name="Ground" type="Sprite" parent="."]
+modulate = Color( 0.607843, 0.607843, 0.607843, 1 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 621, 219 )
+position = Vector2( 653, 64 )
 
 [node name="Trees" type="YSort" parent="."]
 
@@ -834,6 +876,30 @@ navpoly = SubResource( 1 )
 [node name="Campfire" parent="." instance=ExtResource( 4 )]
 position = Vector2( 639, 223 )
 
+[node name="Campfire2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 167, 73 )
+
+[node name="Campfire3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 240, 285 )
+
+[node name="Campfire4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 478, 386 )
+
+[node name="Campfire5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 351, 76 )
+
+[node name="Campfire6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 680, 72 )
+
+[node name="Campfire7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 524, 36 )
+
+[node name="Campfire8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 439, 232 )
+
+[node name="Campfire9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 56, 202 )
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.65098, 0.65098, 0.65098, 1 )
 
@@ -895,9 +961,6 @@ layer = 10
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/Sunset = SubResource( 3 )
-
-[node name="ItemDrop" parent="." instance=ExtResource( 15 )]
-position = Vector2( 480, 215 )
 
 [connection signal="timeout" from="Director/Income" to="Director" method="_on_Income_timeout"]
 [connection signal="timeout" from="Director/Spawn" to="Director" method="_on_Spawn_timeout"]
