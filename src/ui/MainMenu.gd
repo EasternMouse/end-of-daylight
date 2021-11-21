@@ -47,3 +47,11 @@ func _on_Sound_value_changed(value: float) -> void:
 
 func _on_Music_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bgm_bus, linear2db(value))
+
+
+func _on_ButtonFullscreen_pressed() -> void:
+	OS.window_fullscreen = not OS.window_fullscreen
+	if OS.window_fullscreen:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -7,7 +7,6 @@ var time := 0
 onready var color_rect := $ColorRect
 onready var tween := $Tween
 
-
 func _ready() -> void:
 	transition_in_progress = true
 	color_rect.visible = true
