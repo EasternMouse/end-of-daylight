@@ -19,6 +19,7 @@ func _on_ButtonQuit_pressed() -> void:
 
 
 func _on_ButtonHowTo_pressed() -> void:
+	$HowTo.visible = true
 	tween.interpolate_property($HowTo, "rect_position", Vector2(0, 144), Vector2(0, 0), 0.5)
 	tween.start()
 
@@ -26,3 +27,7 @@ func _on_ButtonHowTo_pressed() -> void:
 func _on_ButtonBack_pressed() -> void:
 	tween.interpolate_property($HowTo, "rect_position", Vector2(0, 0), Vector2(0, 144), 0.5)
 	tween.start()
+
+
+func _on_Sound_value_changed(value: float) -> void:
+	pass # Replace with function body.
