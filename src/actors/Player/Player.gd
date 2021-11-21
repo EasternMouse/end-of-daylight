@@ -25,11 +25,36 @@ var weapons := {
 		ammo = 0,
 		uses_ammo = false,
 		unlocked = true,
+		cx = 20,
+		cy = 10,
+		burst = 1,
+	},
+	needle = {
+		name = "needle",
+		damage = 1,
+		ammo = 50,
+		uses_ammo = true,
+		unlocked = false,
+		cx = 20,
+		cy = 10,
+		burst = 10,
+	},
+	orb = {
+		name = "orb",
+		damage = 110,
+		ammo = 10,
+		uses_ammo = true,
+		unlocked = false,
+		cx = 10,
+		cy = 5,
+		burst = 1,
 	},
 }
 
 var current_weapon = weapons.seal
 
+var bullet_scene := preload("res://actors/bullets/Bullet.tscn")
+var world: Node2D
 
 var input_vector: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
@@ -47,6 +72,7 @@ onready var sprite_top: Sprite = $SpriteTop
 
 onready var melee_hitbox := $Pivot/Melee
 
+onready var random := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	animation_tree_bottom.active = true
@@ -57,10 +83,32 @@ func _ready() -> void:
 	animation_tree_top.set("parameters/blend_position", Vector2.DOWN)
 	
 	Events.connect("game_start", self, "game_start")
+	
+	var nodes_world = get_tree().get_nodes_in_group("world")
+	if nodes_world.size() > 0:
+		world = nodes_world[0]
+	else:
+		world = self
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("1") and weapons.melee.unlocked:
+		Events.emit_signal("weapon_choose", "melee")
+		current_weapon = weapons.melee
+	elif event.is_action_pressed("2") and weapons.seal.unlocked:
+		Events.emit_signal("weapon_choose", "seal")
+		current_weapon = weapons.seal
+	elif event.is_action_pressed("3") and weapons.needle.unlocked:
+		Events.emit_signal("weapon_choose", "needle")
+		current_weapon = weapons.needle
+	elif event.is_action_pressed("4") and weapons.orb.unlocked:
+		Events.emit_signal("weapon_choose", "orb")
+		current_weapon = weapons.orb
 
 
 func game_start():
 	state_machine.transition_to("Idle")
+	Events.emit_signal("weapon_choose", "seal")
 
 
 func _physics_process(_delta: float) -> void:
@@ -73,4 +121,32 @@ func melee_attack() -> void:
 
 
 func bullet_attack() -> void:
-	pass
+	if not current_weapon.uses_ammo or current_weapon.ammo > 0:
+		for i in current_weapon.burst:
+			var mouse_pos = get_viewport().get_mouse_position() - get_viewport().size/2
+			var variation = get_random_point_in_circle(current_weapon.cx, current_weapon.cy)
+			var bullet = bullet_scene.instance()
+			bullet.global_position = pivot.global_position + mouse_pos + variation
+			world.add_child(bullet)
+		if current_weapon.uses_ammo:
+			current_weapon.ammo -= 1
+			Events.emit_signal("weapon_ammo", current_weapon.name, current_weapon.ammo)
+
+
+func get_random_point_in_circle(cx, cy) -> Vector2:
+	var angle = random.randf() * 2 * PI
+	var d = abs(random.randfn(0.0, 0.5))
+	var new_point = Vector2(sin(angle) * d * cx, cos(angle) * d * cy)
+	return new_point
+
+
+func _on_PickupArea2D_area_entered(area: Area2D) -> void:
+	if area.item == null:
+		pass
+	if area.item.name == "weapon_needle":
+		var weapon = weapons.needle
+		weapon.unlocked = true
+		weapon.ammo += area.item.amount
+		Events.emit_signal("weapon_unlocked", weapon.name)
+		Events.emit_signal("weapon_ammo", weapon.name, weapon.ammo)
+	area.queue_free()

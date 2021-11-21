@@ -4,6 +4,8 @@
 
 [resource]
 size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.501961 )
 extra_spacing_top = -4
 extra_spacing_char = -2
 font_data = ExtResource( 1 )

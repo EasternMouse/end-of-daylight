@@ -24,13 +24,12 @@ func physics_update(delta: float) -> void:
 	
 	player.velocity = player.move_and_slide(player.velocity)
 	
+	if Input.is_action_pressed("attack"):
+		player.shgooting_player.play(player.current_weapon.name)
+	
+	
 	if player.velocity.is_equal_approx(Vector2.ZERO):
 		state_machine.transition_to("Idle")
 	else:
 		player.animation_tree_bottom.set("parameters/Idle/blend_position", player.velocity)
 		player.animation_tree_bottom.set("parameters/Run/blend_position", player.velocity)
-
-
-func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		player.shgooting_player.play(player.current_weapon.name)

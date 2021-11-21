@@ -1,6 +1,6 @@
 extends Node2D
 
-var credit := 0
+var credit := 20
 var income := 5
 var spawn_points = []
 

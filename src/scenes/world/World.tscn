@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/world/map.png" type="Texture" id=1]
 [ext_resource path="res://actors/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,9 +8,13 @@
 [ext_resource path="res://ui/MainMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/world/Director.gd" type="Script" id=7]
 [ext_resource path="res://shaders/light_filled.png" type="Texture" id=8]
+[ext_resource path="res://scenes/world/World.gd" type="Script" id=9]
+[ext_resource path="res://ui/player_ui/PlayerUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/static/tree/Tree.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/static/tree/tree.png" type="Texture" id=12]
 [ext_resource path="res://actors/static/tree/tree_n.png" type="Texture" id=13]
+[ext_resource path="res://scenes/world/sky.png" type="Texture" id=14]
+[ext_resource path="res://actors/items/ItemDrop.tscn" type="PackedScene" id=15]
 
 [sub_resource type="OccluderPolygon2D" id=4]
 polygon = PoolVector2Array( 12, 47, 16, 46, 20, 47, 16, 48 )
@@ -79,7 +83,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Sunset"
-length = 10.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasModulate:color")
 tracks/0/interp = 1
@@ -87,7 +91,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6.8, 10 ),
+"times": PoolRealArray( 0, 20.1, 30 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.65098, 0.65098, 0.65098, 1 ), Color( 0.352941, 0.105882, 0.117647, 1 ) ]
@@ -99,7 +103,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2, 10 ),
+"times": PoolRealArray( 20.1, 30 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
@@ -111,13 +115,14 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 10 ),
+"times": PoolRealArray( 0, 20.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0.937255, 0, 1 ), Color( 1, 0.541176, 0.172549, 1 ) ]
 }
 
-[node name="World" type="YSort"]
+[node name="World" type="YSort" groups=["world"]]
+script = ExtResource( 9 )
 
 [node name="Sun" type="Node2D" parent="."]
 position = Vector2( 662, -18 )
@@ -135,6 +140,20 @@ margin_right = 911.0
 margin_bottom = 111.0
 mouse_filter = 2
 texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sky" type="TextureRect" parent="."]
+light_mask = 0
+margin_left = -145.0
+margin_top = -147.0
+margin_right = 910.0
+margin_bottom = -3.0
+mouse_filter = 2
+texture = ExtResource( 14 )
 expand = true
 stretch_mode = 2
 __meta__ = {
@@ -869,12 +888,16 @@ autostart = true
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
 
+[node name="PlayerUI" parent="UI" instance=ExtResource( 10 )]
+
 [node name="MainMenu" parent="UI" instance=ExtResource( 6 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Sunset"
 anims/RESET = SubResource( 2 )
 anims/Sunset = SubResource( 3 )
+
+[node name="ItemDrop" parent="." instance=ExtResource( 15 )]
+position = Vector2( 480, 215 )
 
 [connection signal="timeout" from="Director/Income" to="Director" method="_on_Income_timeout"]
 [connection signal="timeout" from="Director/Spawn" to="Director" method="_on_Spawn_timeout"]
