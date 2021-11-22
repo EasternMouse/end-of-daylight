@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CRTFrame.png-a16aaf8abab818bec2ec896c9fcf1a2b.stex"
+path="res://.import/CRTFrame.png-c9abd4314f9e0cf9030147dbb433978a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shaders/CRTFrame.png"
-dest_files=[ "res://.import/CRTFrame.png-a16aaf8abab818bec2ec896c9fcf1a2b.stex" ]
+source_file="res://shaders/CRT/CRTFrame.png"
+dest_files=[ "res://.import/CRTFrame.png-c9abd4314f9e0cf9030147dbb433978a.stex" ]
 
 [params]
 
