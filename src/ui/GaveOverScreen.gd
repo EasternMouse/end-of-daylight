@@ -23,7 +23,7 @@ var flavour_text = [
 
 func _ready() -> void:
 	var random_text = flavour_text[randi()%flavour_text.size()]
-	$MarginContainer/VBoxContainer/RichTextLabel.bbcode_text = "[center][shake rate=20 level=5]" + random_text + "[/shake][/center]"
+#	$MarginContainer/VBoxContainer/RichTextLabel.bbcode_text = "[center][shake rate=20 level=5]" + random_text + "[/shake][/center]"
 	var time = SaveLoad.time
 	var minutes = time/60
 	var seconds = time%60

@@ -133,6 +133,7 @@ tracks/4/keys = {
 }
 
 [node name="GaveOverScreen" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -176,8 +177,8 @@ margin_bottom = 46.0
 custom_colors/default_color = Color( 0.811765, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "[center][shake rate=20 level=5]Light is no more[/shake][/center]"
-text = "Light is no more"
+bbcode_text = "[center][shake rate=100 level=5]This is the end[/shake][/center]"
+text = "This is the end"
 fit_content_height = true
 scroll_active = false
 
