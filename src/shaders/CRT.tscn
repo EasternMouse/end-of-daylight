@@ -15,7 +15,7 @@ shader_param/bleeding_range_x = 0.5
 shader_param/bleeding_range_y = 0.5
 shader_param/lines_distance = 2.0
 shader_param/scan_size = 1.0
-shader_param/scanline_alpha = 0.9
+shader_param/scanline_alpha = 0.95
 shader_param/lines_velocity = 10.0
 
 [node name="CRT" type="Control"]
