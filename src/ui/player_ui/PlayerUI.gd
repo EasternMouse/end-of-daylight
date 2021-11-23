@@ -16,6 +16,11 @@ func _ready() -> void:
 	Events.connect("player_life", self, "player_life")
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_hide_ui"):
+		visible = not visible
+
+
 func game_start() -> void:
 	tween.interpolate_property(self, "modulate", modulate, Color.white, 3)
 	tween.start()
