@@ -54,7 +54,7 @@ func _on_Spawn_timeout() -> void:
 		credit -= mob.cost
 		
 		var spawn_point = spawn_points[randi()%spawn_points.size()]
-		if spawn_point.is_on_screen():
+		while spawn_point.is_on_screen():
 			spawn_point = spawn_points[randi()%spawn_points.size()]
 		var mob_obj = mob.scene.instance()
 		mob_obj.global_position = spawn_point.global_position
