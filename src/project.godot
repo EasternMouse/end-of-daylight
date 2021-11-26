@@ -42,6 +42,7 @@ config/name="End of Daylight"
 run/main_scene="res://scenes/world/World.tscn"
 boot_splash/image="res://CRT_Frame_256.png"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
