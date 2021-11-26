@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	if monitoring:
 		var areas = get_overlapping_areas()
 		if areas.size() > 0:
-			$Particles2D.process_material = red_particle
+			$Particles2D.color = Color.red
 			areas[0].damage(damage, knockback)
 			monitoring = false
 

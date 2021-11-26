@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/bullets/Bullet.gd" type="Script" id=1]
-[ext_resource path="res://actors/bullets/white_hit_particle_material.tres" type="Material" id=2]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=3]
 [ext_resource path="res://actors/Player/gun_sound/gun_2.wav" type="AudioStream" id=4]
 [ext_resource path="res://actors/Player/gun_sound/gun_3.wav" type="AudioStream" id=5]
@@ -10,6 +9,13 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.491525, 1 ), 1.4, 0.0, 0, 0, Vector2( 0.864407, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.8, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.168627, 0.313726, 0.215686, 0 )
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
@@ -25,15 +31,30 @@ wait_time = 0.05
 one_shot = true
 autostart = true
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Particles2D" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 16
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-visibility_rect = Rect2( -50, -50, 100, 100 )
+lifetime_randomness = 0.5
 local_coords = false
-process_material = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2( 0, -1 )
+spread = 35.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.2
+orbit_velocity_random = 1.0
+damping = 15.0
+damping_random = 0.25
+scale_amount = 2.0
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 4 )
+color = Color( 0.203922, 0.6, 0, 1 )
+color_ramp = SubResource( 2 )
+hue_variation_random = 0.7
 
 [node name="TimerDeath" type="Timer" parent="."]
 wait_time = 0.6
