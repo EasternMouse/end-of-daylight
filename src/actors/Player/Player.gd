@@ -27,8 +27,8 @@ var weapons := {
 		ammo = 0,
 		uses_ammo = false,
 		unlocked = true,
-		cx = 20,
-		cy = 10,
+		cx = 5,
+		cy = 2,
 		burst = 1,
 	},
 	needle = {
@@ -43,7 +43,7 @@ var weapons := {
 	},
 	orb = {
 		name = "orb",
-		damage = 110,
+		damage = 10,
 		ammo = 3,
 		uses_ammo = true,
 		unlocked = false,
