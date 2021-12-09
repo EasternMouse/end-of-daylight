@@ -7,6 +7,7 @@
 [ext_resource path="res://autoload/Cursor.gd" type="Script" id=5]
 
 [node name="SaveLoad" type="CanvasLayer"]
+pause_mode = 2
 layer = 100
 script = ExtResource( 1 )
 
