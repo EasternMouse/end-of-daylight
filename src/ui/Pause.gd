@@ -18,5 +18,6 @@ func _on_ButtonContinue_pressed() -> void:
 
 
 func _on_ButtonMainMenu_pressed() -> void:
+	get_tree().paused = false
 	SaveLoad.open_scene("res://scenes/world/World.tscn")
 

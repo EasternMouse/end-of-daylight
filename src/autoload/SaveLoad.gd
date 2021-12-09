@@ -17,6 +17,7 @@ func _ready() -> void:
 	transition_in_progress = true
 	color_rect.visible = true
 	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 0, 1, 1)
+	yield(get_tree().create_timer(0.5), "timeout")
 	tween.start()
 	yield(tween, "tween_all_completed")
 	color_rect.visible = false
