@@ -305,7 +305,6 @@ wait_time = 0.3
 one_shot = true
 
 [node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 bus = "SE"
 script = ExtResource( 5 )
 samples = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ) ]
@@ -341,7 +340,6 @@ monitorable = false
 shape = SubResource( 16 )
 
 [node name="RandomAudioStreamPlayerMelee" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 script = ExtResource( 5 )
 samples = [ ExtResource( 10 ) ]
 random_pitch_range = 0.75

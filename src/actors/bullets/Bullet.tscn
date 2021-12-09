@@ -62,7 +62,6 @@ one_shot = true
 autostart = true
 
 [node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -15.0
 bus = "SE"
 script = ExtResource( 3 )
 samples = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ]

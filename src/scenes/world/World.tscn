@@ -159,7 +159,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -10.0 ]
+"values": [ -5.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -234,7 +234,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -10.0, -80.0 ]
+"values": [ -5.0, -80.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../BGM_Main:volume_db")
@@ -246,7 +246,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -10.0, -80.0 ]
+"values": [ -5.0, -80.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("../BGM_Main:pitch_scale")
@@ -274,7 +274,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -10.0, -80.0 ]
+"values": [ -5.0, -80.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -310,7 +310,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 1, 1.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -80.0, -10.0 ]
+"values": [ -80.0, -5.0 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("../BGM_Main:pitch_scale")
@@ -1163,7 +1163,7 @@ anims/to_main = SubResource( 8 )
 
 [node name="BGM_Intro" type="AudioStreamPlayer" parent="AnimationPlayerBGM"]
 stream = ExtResource( 16 )
-volume_db = -10.0
+volume_db = -5.0
 autoplay = true
 bus = "BGM"
 
