@@ -38,6 +38,7 @@ func weapon_unlocked(id) -> void:
 	var node = get_node("VBoxContainer/Weapons/" + id)
 	node.visible = true
 
+
 func weapon_ammo(id, ammo) -> void:
 	var node = get_node("VBoxContainer/Weapons/" + id)
 	node.get_node("VBoxContainer/Ammo").text = String(ammo)

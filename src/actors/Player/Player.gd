@@ -20,6 +20,8 @@ var weapons := {
 		ammo = 0,
 		uses_ammo = false,
 		unlocked = true,
+		next = "seal",
+		previous = "orb"
 	},
 	seal = {
 		name = "seal",
@@ -30,6 +32,8 @@ var weapons := {
 		cx = 5,
 		cy = 2,
 		burst = 1,
+		next = "needle",
+		previous = "melee"
 	},
 	needle = {
 		name = "needle",
@@ -40,6 +44,8 @@ var weapons := {
 		cx = 20,
 		cy = 10,
 		burst = 10,
+		next = "orb",
+		previous = "seal"
 	},
 	orb = {
 		name = "orb",
@@ -50,6 +56,8 @@ var weapons := {
 		cx = 10,
 		cy = 5,
 		burst = 1,
+		next = "melee",
+		previous = "needle"
 	},
 }
 
@@ -84,6 +92,7 @@ func _ready() -> void:
 	animation_tree_top.set("parameters/Aim/blend_position", Vector2.DOWN)
 	
 	Events.connect("game_start", self, "game_start")
+	Events.connect("weapon_choose", self, "weapon_choose")
 	
 	var nodes_world = get_tree().get_nodes_in_group("world")
 	if nodes_world.size() > 0:
@@ -93,19 +102,29 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("1") and weapons.melee.unlocked:
+	if event.is_action_pressed("next"):
+		var selected = weapons[current_weapon.next]
+		while !selected.unlocked:
+			selected = weapons[selected.next]
+		Events.emit_signal("weapon_choose", selected.name)
+	elif event.is_action_pressed("previous"):
+		var selected = weapons[current_weapon.previous]
+		while !selected.unlocked:
+			selected = weapons[selected.previous]
+		Events.emit_signal("weapon_choose", selected.name)
+	
+	elif event.is_action_pressed("1") and weapons.melee.unlocked:
 		Events.emit_signal("weapon_choose", "melee")
-		current_weapon = weapons.melee
 	elif event.is_action_pressed("2") and weapons.seal.unlocked:
 		Events.emit_signal("weapon_choose", "seal")
-		current_weapon = weapons.seal
 	elif event.is_action_pressed("3") and weapons.needle.unlocked:
 		Events.emit_signal("weapon_choose", "needle")
-		current_weapon = weapons.needle
 	elif event.is_action_pressed("4") and weapons.orb.unlocked:
 		Events.emit_signal("weapon_choose", "orb")
-		current_weapon = weapons.orb
 
+
+func weapon_choose(weapon_name) -> void:
+	current_weapon = weapons[weapon_name]
 
 func game_start():
 	animation_tree_bottom.active = true
