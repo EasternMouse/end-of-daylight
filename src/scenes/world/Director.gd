@@ -9,7 +9,7 @@ var mobs := [
 	{
 		cost = 1,
 		name = "FairyGreen",
-		limit = 100,
+		limit = 40,
 		scene = preload("res://actors/Mobs/Fairy/FairyGreen.tscn"),
 	},
 	{
@@ -51,6 +51,7 @@ func _on_Income_timeout() -> void:
 	credit += income
 	income += income_increase
 	print("Income! Current creds: ", credit, " Income: ", income)
+	print("Green fairies: ", get_tree().get_nodes_in_group("FairyGreen").size(), " out of ", get_tree().get_nodes_in_group("Mobs").size(), " mobs")
 
 
 func _on_Spawn_timeout() -> void:

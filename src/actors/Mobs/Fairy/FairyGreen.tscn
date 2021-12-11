@@ -2,8 +2,9 @@
 
 [ext_resource path="res://actors/Mobs/Fairy/Fairy.tscn" type="PackedScene" id=1]
 
-[node name="FairyGreen" instance=ExtResource( 1 )]
-speed = 60
+[node name="FairyGreen" groups=["FairyGreen"] instance=ExtResource( 1 )]
+max_life = 2
+speed = 80
 item_multiplier = 0.04
 
 [node name="LightOccluder2D" parent="." index="3"]
