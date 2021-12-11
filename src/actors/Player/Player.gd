@@ -130,8 +130,11 @@ func game_start():
 	animation_tree_bottom.active = true
 	animation_tree_top.active = true
 	
-	state_machine.transition_to("Idle")
 	Events.emit_signal("weapon_choose", "seal")
+
+
+func transition_to_idle() -> void:
+	state_machine.transition_to("Idle")
 
 
 func _physics_process(_delta: float) -> void:
@@ -189,4 +192,3 @@ func damage(damage_value) -> void:
 			animation_player_top.play_backwards("Sit")
 			animation_player_bottom.play_backwards("Sit")
 			Events.emit_signal("game_over")
-			

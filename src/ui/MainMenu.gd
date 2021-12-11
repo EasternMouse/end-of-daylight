@@ -21,7 +21,7 @@ func _on_ButtonStart_pressed() -> void:
 
 
 func _on_ButtonQuit_pressed() -> void:
-	get_tree().quit()
+	SaveLoad.quit()
 
 
 func _on_ButtonHowTo_pressed() -> void:

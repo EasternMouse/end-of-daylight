@@ -16,7 +16,7 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(bgm_bus, linear2db(0.7))
 	transition_in_progress = true
 	color_rect.visible = true
-	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 0, 1, 1)
+	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 0, 1, 0.5)
 	yield(get_tree().create_timer(0.5), "timeout")
 	tween.start()
 	yield(tween, "tween_all_completed")
@@ -34,15 +34,27 @@ func open_scene(new_scene: String):
 		return
 	transition_in_progress = true
 	color_rect.visible = true
-	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 1, 0, 1)
+	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 1, 0, 0.5)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	yield(get_tree().create_timer(0.25), "timeout")
 	var err = get_tree().change_scene(new_scene)
 	if err != OK:
 		print("Can't change scene! ", new_scene)
-	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 0, 1, 1)
+	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 0, 1, 0.5)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	color_rect.visible = false
 	transition_in_progress = false
+
+
+func quit() -> void:
+	if transition_in_progress:
+		return
+	transition_in_progress = true
+	color_rect.visible = true
+	tween.interpolate_property(color_rect.material, "shader_param/cutoff", 1, 0, 0.5)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	yield(get_tree().create_timer(0.25), "timeout")
+	get_tree().quit()
