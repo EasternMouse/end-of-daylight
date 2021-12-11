@@ -24,7 +24,7 @@ onready var melee_hitbox := $Pivot/Melee
 onready var pivot := $Pivot
 
 func _ready() -> void:
-	pass
+	add_to_group(name)
 
 
 func _physics_process(delta: float) -> void:

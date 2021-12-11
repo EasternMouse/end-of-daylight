@@ -1145,7 +1145,6 @@ wait_time = 5.0
 
 [node name="Spawn" type="Timer" parent="Director"]
 wait_time = 0.1
-autostart = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
