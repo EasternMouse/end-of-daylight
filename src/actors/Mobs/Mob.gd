@@ -28,7 +28,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
 	if knockback_velocity != Vector2.ZERO:
 		move_and_slide(knockback_velocity)
 		knockback_velocity = knockback_velocity * 0.9
@@ -36,7 +35,15 @@ func _physics_process(delta: float) -> void:
 		var distance_to_next_point = position.distance_to(path[0])
 		if speed * delta > distance_to_next_point:
 			path.remove(0)
-		move_and_slide(position.direction_to(path[0]) * speed * speed_multiplier)
+		velocity = move_and_slide(position.direction_to(path[0]) * speed * speed_multiplier)
+
+
+func _process(delta: float) -> void:
+	if not is_zero_approx(velocity.x):
+		if velocity.x > 0:
+			$Sprite.flip_h = false
+		elif velocity.x < 0:
+			$Sprite.flip_h = true
 
 
 func damage(received_damage:int, knockback:Vector2) -> void:
