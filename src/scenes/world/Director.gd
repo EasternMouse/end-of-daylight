@@ -62,6 +62,8 @@ func _on_Spawn_timeout() -> void:
 		while retry_count < retry_limit and (mob.cost > credit or (mob.has("limit") and get_tree().get_nodes_in_group(mob.name).size() > mob.limit)):
 			mob = mobs[randi()%mobs.size()]
 			retry_count += 1
+		if retry_count >= retry_limit:
+			return
 		credit -= mob.cost
 		
 		var spawn_point = spawn_points[randi()%spawn_points.size()]
