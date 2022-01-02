@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 		var distance_to_next_point = position.distance_to(path[0])
 		if speed * delta > distance_to_next_point:
 			path.remove(0)
-		velocity = move_and_slide(position.direction_to(path[0]) * speed * speed_multiplier)
+		if position.distance_to(path[0]) > 11:
+			velocity = move_and_slide(position.direction_to(path[0]) * speed * speed_multiplier)
 
 
 func _process(delta: float) -> void:

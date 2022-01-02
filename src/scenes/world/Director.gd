@@ -23,6 +23,11 @@ var mobs := [
 		scene = preload("res://actors/Mobs/Fairy/FairyRed.tscn"),
 	},
 	{
+		cost = 15,
+		name = "Raven",
+		scene = preload("res://actors/Mobs/Raven/Raven.tscn"),
+	},
+	{
 		cost = 10,
 		name = "BigFairyGreen",
 		scene = preload("res://actors/Mobs/BigFairy/BigFairyGreen.tscn"),

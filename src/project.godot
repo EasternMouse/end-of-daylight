@@ -232,6 +232,7 @@ pause={
 2d_physics/layer_6="PlayerHurtbox"
 2d_physics/layer_9="Enemy"
 2d_physics/layer_10="EnemyHurtbox"
+2d_physics/layer_11="EnemyFlying"
 2d_physics/layer_13="Pickup"
 
 [physics]
