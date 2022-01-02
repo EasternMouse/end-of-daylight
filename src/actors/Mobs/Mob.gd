@@ -5,6 +5,7 @@ export var speed := 50
 export var damage := 5
 
 export var default_animation := "Jumping_Speed"
+export var melee_animation := "melee"
 
 export var speed_multiplier := 1.0
 
@@ -87,7 +88,7 @@ func _on_PlayerDetector_area_entered(area: Area2D) -> void:
 	if not $AnimationPlayer.current_animation == "die":
 		if path.size() > 0:
 			pivot.rotation = position.direction_to(path[0]).angle()
-		$AnimationPlayer.play("melee")
+		$AnimationPlayer.play(melee_animation)
 
 
 func melee_attack() -> void:
@@ -97,10 +98,10 @@ func melee_attack() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if anim_name == "melee":
+	if anim_name == melee_animation:
 		if $PlayerDetector.get_overlapping_areas().size() > 0:
 			if path.size() > 0:
 				pivot.rotation = position.direction_to(path[0]).angle()
-			$AnimationPlayer.play("melee")
+			$AnimationPlayer.play(melee_animation)
 		else:
 			$AnimationPlayer.play(default_animation)
