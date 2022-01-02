@@ -172,7 +172,7 @@ speed = 80
 damage = 8
 default_animation = "Flying"
 melee_animation = "flying_melee"
-item_multiplier = 0.3
+item_multiplier = 0.2
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
@@ -194,9 +194,6 @@ position = Vector2( 0, -24 )
 
 [node name="PlayerDetector" parent="." index="7"]
 position = Vector2( 0, -24 )
-
-[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
-rotation = 0.0
 
 [node name="Pivot" parent="." index="8"]
 position = Vector2( 0, -24 )
