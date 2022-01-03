@@ -28,6 +28,11 @@ var mobs := [
 		scene = preload("res://actors/Mobs/Raven/Raven.tscn"),
 	},
 	{
+		cost = 25,
+		name = "Zombie",
+		scene = preload("res://actors/Mobs/Zombie/Zombie.tscn"),
+	},
+	{
 		cost = 10,
 		name = "BigFairyGreen",
 		scene = preload("res://actors/Mobs/BigFairy/BigFairyGreen.tscn"),
@@ -44,6 +49,7 @@ var mobs := [
 	},
 ]
 
+onready var navigation: Navigation2D = owner.get_node("Navigation2D")
 
 func _ready() -> void:
 	for point in $Spawners.get_children():
@@ -71,12 +77,27 @@ func _on_Spawn_timeout() -> void:
 			return
 		credit -= mob.cost
 		
-		var spawn_point = spawn_points[randi()%spawn_points.size()]
-		while spawn_point.is_on_screen():
-			spawn_point = spawn_points[randi()%spawn_points.size()]
-		var mob_obj = mob.scene.instance()
-		mob_obj.global_position = spawn_point.global_position
-		add_child(mob_obj)
+		match mob.name:
+			"Zombie":
+				var spawn_parent: Node2D = get_tree().get_nodes_in_group("OutsidePoints")[0]
+				var child_i = randi()%spawn_parent.get_child_count()
+				for i in range(5):
+					var spawn_point = spawn_parent.get_child(child_i)
+					if navigation.get_closest_point(spawn_point.global_position) == spawn_point.global_position:
+						var mob_obj = mob.scene.instance()
+						mob_obj.global_position = spawn_point.global_position
+						add_child(mob_obj)
+					else:
+						i -= 1
+					
+					child_i = wrapi(child_i+1, 0, spawn_parent.get_child_count()-1)
+			_:
+				var spawn_point = spawn_points[randi()%spawn_points.size()]
+				while spawn_point.is_on_screen():
+					spawn_point = spawn_points[randi()%spawn_points.size()]
+				var mob_obj = mob.scene.instance()
+				mob_obj.global_position = spawn_point.global_position
+				add_child(mob_obj)
 
 
 func game_start() -> void:

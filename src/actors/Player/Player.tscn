@@ -721,129 +721,129 @@ script = ExtResource( 13 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource( 55 )
 
-[node name="OutsidePoints" type="Node2D" parent="."]
+[node name="OutsidePoints" type="Node2D" parent="." groups=["OutsidePoints"]]
 
 [node name="Node2D" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -144, -104 )
-
-[node name="Node2D2" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -120, -104 )
-
-[node name="Node2D3" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -96, -104 )
-
-[node name="Node2D4" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -72, -104 )
-
-[node name="Node2D5" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -48, -104 )
-
-[node name="Node2D6" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -24, -104 )
-
-[node name="Node2D7" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 0, -104 )
 
-[node name="Node2D8" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D2" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 24, -104 )
 
-[node name="Node2D9" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D3" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 48, -104 )
 
-[node name="Node2D10" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D4" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 72, -104 )
 
-[node name="Node2D11" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D5" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 96, -104 )
 
-[node name="Node2D12" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D6" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 120, -104 )
 
-[node name="Node2D13" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D7" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, -104 )
 
-[node name="Node2D14" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D8" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, -80 )
 
-[node name="Node2D15" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D9" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, -56 )
 
-[node name="Node2D16" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D10" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, -32 )
 
-[node name="Node2D17" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D11" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, -8 )
 
-[node name="Node2D18" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D12" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, 16 )
 
-[node name="Node2D19" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D13" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, 40 )
 
-[node name="Node2D20" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D14" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, 64 )
 
-[node name="Node2D21" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D15" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 144, 88 )
 
-[node name="Node2D22" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D16" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 120, 88 )
 
-[node name="Node2D23" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D17" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 96, 88 )
 
-[node name="Node2D24" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D18" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 72, 88 )
 
-[node name="Node2D25" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D19" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 48, 88 )
 
-[node name="Node2D26" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D20" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 24, 88 )
 
-[node name="Node2D27" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D21" type="Node2D" parent="OutsidePoints"]
 position = Vector2( 0, 88 )
 
-[node name="Node2D28" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D22" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -24, 88 )
 
-[node name="Node2D29" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D23" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -48, 88 )
 
-[node name="Node2D30" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D24" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -72, 88 )
 
-[node name="Node2D31" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D25" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -96, 88 )
 
-[node name="Node2D32" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D26" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -120, 88 )
 
-[node name="Node2D33" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D27" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, 88 )
 
-[node name="Node2D34" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D28" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, 64 )
 
-[node name="Node2D35" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D29" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, 40 )
 
-[node name="Node2D36" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D30" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, 16 )
 
-[node name="Node2D37" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D31" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, -8 )
 
-[node name="Node2D38" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D32" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, -32 )
 
-[node name="Node2D39" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D33" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, -56 )
 
-[node name="Node2D40" type="Node2D" parent="OutsidePoints"]
+[node name="Node2D34" type="Node2D" parent="OutsidePoints"]
 position = Vector2( -144, -80 )
 
+[node name="Node2D35" type="Node2D" parent="OutsidePoints"]
+position = Vector2( -144, -104 )
+
+[node name="Node2D36" type="Node2D" parent="OutsidePoints"]
+position = Vector2( -120, -104 )
+
+[node name="Node2D37" type="Node2D" parent="OutsidePoints"]
+position = Vector2( -96, -104 )
+
+[node name="Node2D38" type="Node2D" parent="OutsidePoints"]
+position = Vector2( -72, -104 )
+
+[node name="Node2D39" type="Node2D" parent="OutsidePoints"]
+position = Vector2( -48, -104 )
+
+[node name="Node2D40" type="Node2D" parent="OutsidePoints"]
+position = Vector2( -24, -104 )
+
 [node name="Node2D41" type="Node2D" parent="OutsidePoints"]
-position = Vector2( -144, -80 )
+position = Vector2( -24, -104 )
 
 [connection signal="area_entered" from="PickupArea2D" to="." method="_on_PickupArea2D_area_entered"]
