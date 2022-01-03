@@ -17,11 +17,11 @@ var mobs := [
 		name = "FairyBlue",
 		scene = preload("res://actors/Mobs/Fairy/FairyBlue.tscn"),
 	},
-	{
-		cost = 18,
-		name = "FairyRed",
-		scene = preload("res://actors/Mobs/Fairy/FairyRed.tscn"),
-	},
+#	{
+#		cost = 18,
+#		name = "FairyRed",
+#		scene = preload("res://actors/Mobs/Fairy/FairyRed.tscn"),
+#	},
 	{
 		cost = 15,
 		name = "Raven",
@@ -42,11 +42,11 @@ var mobs := [
 		name = "BigFairyBlue",
 		scene = preload("res://actors/Mobs/BigFairy/BigFairyBlue.tscn"),
 	},
-	{
-		cost = 60,
-		name = "BigFairyRed",
-		scene = preload("res://actors/Mobs/BigFairy/BigFairyRed.tscn"),
-	},
+#	{
+#		cost = 60,
+#		name = "BigFairyRed",
+#		scene = preload("res://actors/Mobs/BigFairy/BigFairyRed.tscn"),
+#	},
 ]
 
 onready var navigation: Navigation2D = owner.get_node("Navigation2D")
