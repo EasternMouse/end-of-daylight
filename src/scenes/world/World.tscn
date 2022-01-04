@@ -1184,7 +1184,7 @@ script = ExtResource( 19 )
 [node name="Tween" type="Tween" parent="AnimationPlayerBGM/BGM_Main"]
 
 [node name="AoAndon" parent="." instance=ExtResource( 20 )]
-position = Vector2( 368, 144 )
+position = Vector2( 472, 128 )
 
 [connection signal="timeout" from="Director/Income" to="Director" method="_on_Income_timeout"]
 [connection signal="timeout" from="Director/Spawn" to="Director" method="_on_Spawn_timeout"]

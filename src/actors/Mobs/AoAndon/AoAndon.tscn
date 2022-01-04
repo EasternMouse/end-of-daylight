@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon.png" type="Texture" id=1]
 [ext_resource path="res://actors/Mobs/AoAndon/Lamp.png" type="Texture" id=2]
@@ -185,7 +185,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 20, 50 ]
+"values": [ 20, 20 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Particles2D2:amount")
@@ -197,7 +197,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 20, 50 ]
+"values": [ 20, 20 ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles2D3:amount")
@@ -209,7 +209,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 20, 50 ]
+"values": [ 20, 20 ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("Particles2D:scale")
@@ -310,28 +310,52 @@ tracks/18/keys = {
 } ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("PlayerFlame/Particles2D:emitting")
+tracks/19/path = NodePath("PlayerFlame/Particles2DPreparation:emitting")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
 tracks/19/enabled = true
 tracks/19/keys = {
-"times": PoolRealArray( 0, 3.5, 5 ),
+"times": PoolRealArray( 0, 3.5, 4.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("PlayerFlame/Particles2D:amount")
+tracks/20/path = NodePath("PlayerFlame/Particles2DSimmer:emitting")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
 tracks/20/enabled = true
 tracks/20/keys = {
-"times": PoolRealArray( 0, 3.5, 4.5 ),
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("PlayerFlame/Particles2DExplosion:emitting")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0, 4.5, 5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 60, 20, 60 ]
+"values": [ false, true, false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Particles2D:process_material:spread")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10.0, 10.0 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -553,7 +577,7 @@ tracks/17/keys = {
 "values": [ Vector2( 0, -16 ) ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("PlayerFlame/Particles2D:emitting")
+tracks/18/path = NodePath("PlayerFlame/Particles2DPreparation:emitting")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
@@ -565,7 +589,7 @@ tracks/18/keys = {
 "values": [ false ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("PlayerFlame/Particles2D:amount")
+tracks/19/path = NodePath("PlayerFlame/Particles2DPreparation:amount")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -575,6 +599,66 @@ tracks/19/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 10 ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("PlayerFlame/Particles2DPreparation:process_material:emission_box_extents")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 2, 1, 1 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("PlayerFlame/Particles2DSimmer:emitting")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("PlayerFlame/Particles2DExplosion:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Particles2D:process_material:direction")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1, 0 ) ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Particles2D:process_material:spread")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
 }
 
 [sub_resource type="ParticlesMaterial" id=13]
@@ -594,9 +678,43 @@ scale = 4.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 10 )
 
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 2
+emission_box_extents = Vector3( 4, 8, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 10.0
+flatness = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+angular_velocity = 180.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 10 )
+
 [sub_resource type="ParticlesMaterial" id=16]
 emission_shape = 2
 emission_box_extents = Vector3( 2, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 10.0
+flatness = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 40.0
+angular_velocity = 180.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 2
+emission_box_extents = Vector3( 8, 4, 1 )
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 10.0
@@ -619,7 +737,7 @@ light_mask = 4
 script = ExtResource( 7 )
 max_life = 15
 speed = 20
-damage = 10
+damage = 20
 default_animation = "Idle"
 melee_animation = "Fire"
 item_multiplier = 0.2
@@ -692,15 +810,26 @@ amount = 20
 process_material = SubResource( 13 )
 
 [node name="PlayerFlame" type="Node2D" parent="Flames" index="4"]
-position = Vector2( 0, 16 )
+position = Vector2( 144, 16 )
 script = ExtResource( 8 )
 
-[node name="Particles2D" type="Particles2D" parent="Flames/PlayerFlame" index="0"]
+[node name="Particles2DSimmer" type="Particles2D" parent="Flames/PlayerFlame" index="0"]
+emitting = false
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 17 )
+
+[node name="Particles2DPreparation" type="Particles2D" parent="Flames/PlayerFlame" index="1"]
 emitting = false
 amount = 10
 process_material = SubResource( 16 )
 
-[node name="Area2D" type="Area2D" parent="Flames/PlayerFlame" index="1"]
+[node name="Particles2DExplosion" type="Particles2D" parent="Flames/PlayerFlame" index="2"]
+emitting = false
+amount = 200
+process_material = SubResource( 18 )
+
+[node name="Area2D" type="Area2D" parent="Flames/PlayerFlame" index="3"]
 position = Vector2( 0, -16 )
 collision_layer = 0
 collision_mask = 32
