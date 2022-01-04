@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon.png" type="Texture" id=1]
 [ext_resource path="res://actors/Mobs/AoAndon/Lamp.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon_n.png" type="Texture" id=5]
 [ext_resource path="res://actors/Mobs/AoAndon/Lamp_n.png" type="Texture" id=6]
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon.gd" type="Script" id=7]
+[ext_resource path="res://actors/Mobs/AoAndon/PlayerFlame.gd" type="Script" id=8]
 
 [sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0.0599078, 0.129032, 1 )
@@ -71,12 +72,13 @@ tracks/1/keys = {
 radius = 8.0
 height = 14.0
 
-[sub_resource type="CircleShape2D" id=8]
-radius = 63.5059
+[sub_resource type="CircleShape2D" id=14]
+radius = 120.0
 
 [sub_resource type="Animation" id=11]
 resource_name = "Fire"
-length = 8.0
+length = 6.0
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
@@ -84,10 +86,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 4.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 720.0 ]
+"values": [ 0.0, 720.0, 720.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Particles2D:rotation_degrees")
@@ -96,10 +98,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 4.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -720.0 ]
+"values": [ 0.0, -720.0, -720.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Particles2D2:rotation_degrees")
@@ -108,10 +110,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 4.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -720.0 ]
+"values": [ 0.0, -720.0, -720.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Particles2D3:rotation_degrees")
@@ -120,10 +122,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 4.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -720.0 ]
+"values": [ 0.0, -720.0, -720.0 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Particles2D:emitting")
@@ -132,7 +134,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 6.4 ),
+"times": PoolRealArray( 0, 4.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -144,7 +146,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 4, 6.4 ),
+"times": PoolRealArray( 0, 3, 4.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -156,7 +158,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 2, 6.4 ),
+"times": PoolRealArray( 0, 1.5, 4.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -180,7 +182,7 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 6 ),
+"times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 20, 50 ]
@@ -192,7 +194,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 6 ),
+"times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 20, 50 ]
@@ -204,7 +206,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 6 ),
+"times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 20, 50 ]
@@ -216,7 +218,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0, 5, 6 ),
+"times": PoolRealArray( 0, 3.5, 4.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ) ]
@@ -228,7 +230,7 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 5, 6 ),
+"times": PoolRealArray( 0, 3.5, 4.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ) ]
@@ -240,7 +242,7 @@ tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 5, 6 ),
+"times": PoolRealArray( 0, 3.5, 4.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ) ]
@@ -252,7 +254,7 @@ tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 0, 6 ),
+"times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0.0, 1.0 ]
@@ -264,7 +266,7 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 6 ),
+"times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0.0, 1.0 ]
@@ -276,7 +278,7 @@ tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 0, 6 ),
+"times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0.0, 1.0 ]
@@ -288,10 +290,48 @@ tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 0, 6, 7 ),
+"times": PoolRealArray( 0, 4.5, 5.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -16 ), Vector2( 0, -16 ), Vector2( 0, -32 ) ]
+}
+tracks/18/type = "method"
+tracks/18/path = NodePath("PlayerFlame")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 4.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack"
+} ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("PlayerFlame/Particles2D:emitting")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 3.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("PlayerFlame/Particles2D:amount")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0, 3.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 60, 20, 60 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -512,6 +552,30 @@ tracks/17/keys = {
 "update": 0,
 "values": [ Vector2( 0, -16 ) ]
 }
+tracks/18/type = "value"
+tracks/18/path = NodePath("PlayerFlame/Particles2D:emitting")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("PlayerFlame/Particles2D:amount")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
 
 [sub_resource type="ParticlesMaterial" id=13]
 emission_shape = 2
@@ -530,13 +594,35 @@ scale = 4.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 10 )
 
+[sub_resource type="ParticlesMaterial" id=16]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 10.0
+flatness = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 40.0
+angular_velocity = 180.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 10 )
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 8.0
+
 [node name="AoAndon" instance=ExtResource( 3 )]
 light_mask = 4
 script = ExtResource( 7 )
 max_life = 15
-damage = 9
+speed = 20
+damage = 10
 default_animation = "Idle"
 melee_animation = "Fire"
+item_multiplier = 0.2
 
 [node name="Sprite" parent="." index="1"]
 light_mask = 4
@@ -575,14 +661,15 @@ position = Vector2( 0, -16 )
 shape = SubResource( 7 )
 
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+shape = SubResource( 14 )
+
+[node name="Pivot" parent="." index="11"]
 visible = false
-shape = SubResource( 8 )
 
 [node name="Flames" type="Node2D" parent="." index="13"]
 position = Vector2( 0, -16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Flames" index="0"]
-autoplay = "Fire"
 anims/Fire = SubResource( 11 )
 anims/RESET = SubResource( 12 )
 
@@ -603,3 +690,23 @@ position = Vector2( 20.7846, 12 )
 emitting = false
 amount = 20
 process_material = SubResource( 13 )
+
+[node name="PlayerFlame" type="Node2D" parent="Flames" index="4"]
+position = Vector2( 0, 16 )
+script = ExtResource( 8 )
+
+[node name="Particles2D" type="Particles2D" parent="Flames/PlayerFlame" index="0"]
+emitting = false
+amount = 10
+process_material = SubResource( 16 )
+
+[node name="Area2D" type="Area2D" parent="Flames/PlayerFlame" index="1"]
+position = Vector2( 0, -16 )
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flames/PlayerFlame/Area2D" index="0"]
+shape = SubResource( 15 )
+
+[connection signal="area_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_area_exited"]
