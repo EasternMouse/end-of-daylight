@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _on_PlayerDetector_area_entered(area: Area2D) -> void:
-	if not $AnimationPlayer.current_animation == "die":
+	if not $AnimationPlayer.current_animation == "ao_die":
 		fire_animation.play("Fire")
 
 
@@ -18,5 +18,6 @@ func _on_PlayerDetector_area_exited(area: Area2D) -> void:
 
 func die() -> void:
 	spawn_item()
-	$AnimationPlayer.play("die")
+	$AnimationPlayer.play("ao_die")
+	$Flames/AnimationPlayer.play("RESET")
 	$RandomAudioStreamPlayer.play()

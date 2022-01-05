@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon.png" type="Texture" id=1]
 [ext_resource path="res://actors/Mobs/AoAndon/Lamp.png" type="Texture" id=2]
@@ -70,6 +70,92 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=19]
 resource_name = "ao_die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -24 ), Vector2( 0, -64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.75, 1 ), Vector2( 2, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.8 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LampSprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Particles2DDeath:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Particles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 8.0
@@ -735,6 +821,30 @@ color_ramp = SubResource( 10 )
 [sub_resource type="CircleShape2D" id=15]
 radius = 8.0
 
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0.0599078, 0.115207, 0.317972, 1 )
+colors = PoolColorArray( 0.141907, 0.148845, 0.585938, 1, 0.0809784, 0.339844, 0.315575, 1, 0, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=22]
+emission_shape = 2
+emission_box_extents = Vector3( 6, 16, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 10.0
+flatness = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+angular_velocity = 180.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 21 )
+
 [node name="AoAndon" instance=ExtResource( 3 )]
 light_mask = 4
 script = ExtResource( 7 )
@@ -777,10 +887,14 @@ anims/Idle = SubResource( 1 )
 anims/ao_die = SubResource( 19 )
 
 [node name="Hurtbox" parent="." index="7"]
+visible = false
 position = Vector2( 0, -16 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 7 )
+
+[node name="PlayerDetector" parent="." index="10"]
+visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
 shape = SubResource( 14 )
@@ -841,5 +955,12 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flames/PlayerFlame/Area2D" index="0"]
 shape = SubResource( 15 )
+
+[node name="Particles2DDeath" type="Particles2D" parent="." index="14"]
+position = Vector2( 0, -16 )
+emitting = false
+amount = 100
+explosiveness = 0.5
+process_material = SubResource( 22 )
 
 [connection signal="area_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_area_exited"]
