@@ -59,8 +59,8 @@ onready var navigation: Navigation2D = owner.get_node("Navigation2D")
 func _ready() -> void:
 	for point in $Spawners.get_children():
 		spawn_points.append(point)
-#	Events.connect("game_start", self, "game_start")
-#	Events.connect("game_over", self, "game_over")
+	Events.connect("game_start", self, "game_start")
+	Events.connect("game_over", self, "game_over")
 
 
 func _on_Income_timeout() -> void:
