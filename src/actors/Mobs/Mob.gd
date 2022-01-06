@@ -29,6 +29,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	move_along_path(delta)
+
+
+func move_along_path(delta: float) -> void:
 	if knockback_velocity != Vector2.ZERO:
 		move_and_slide(knockback_velocity)
 		knockback_velocity = knockback_velocity * 0.9
