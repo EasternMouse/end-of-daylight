@@ -60,3 +60,4 @@ func player_life(life) -> void:
 
 func game_over() -> void:
 	SaveLoad.time = time
+	$SecondTimer.stop()

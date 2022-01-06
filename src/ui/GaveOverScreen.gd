@@ -21,6 +21,13 @@ var flavour_text = [
 ]
 
 
+class SortHighScore:
+	static func sort_descending(a, b):
+		if a.time > b.time:
+			return true
+		return false
+
+
 func _ready() -> void:
 	var random_text = flavour_text[randi()%flavour_text.size()]
 	$MarginContainer/VBoxContainer/RichTextLabel.bbcode_text = "[center][shake rate=1000 level=6]" + random_text + "[/shake][/center]"
@@ -53,15 +60,23 @@ func save_high_score() -> void:
 		}
 	else:
 		save = save_file.get_var()
-	
+		if save == null:
+			save = {
+			death_count = 1,
+			high_score = [{
+				name = "Mouse",
+				time = 100,
+			}],
+		}
 	save_file.open("user://high_score.sav", File.WRITE)
 	
 	var player_name = $MarginContainer/VBoxContainer/LineEdit.text if $MarginContainer/VBoxContainer/LineEdit.text != "" else "You"
 	var new_line = {
-		name = $MarginContainer/VBoxContainer/LineEdit.text,
+		name = player_name,
 		time = SaveLoad.time,
 		}
 	
 	save.high_score.append(new_line)
+	save.high_score.sort_custom(SortHighScore, "sort_descending")
 	save_file.store_var(save)
 	save_file.close()
