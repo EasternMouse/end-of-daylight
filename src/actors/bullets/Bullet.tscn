@@ -55,7 +55,7 @@ damping_random = 0.25
 scale_amount = 2.0
 scale_amount_random = 1.0
 scale_amount_curve = SubResource( 4 )
-color = Color( 0.0235294, 0.0705882, 0.00392157, 1 )
+color = Color( 0.164706, 0.435294, 0.054902, 1 )
 color_ramp = SubResource( 2 )
 hue_variation_random = 0.7
 

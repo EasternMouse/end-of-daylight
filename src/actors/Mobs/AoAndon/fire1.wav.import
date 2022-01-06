@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fire1.wav-4255365f4722ce8cb3af19b313b174c8.sample"
+
+[deps]
+
+source_file="res://actors/Mobs/AoAndon/fire1.wav"
+dest_files=[ "res://.import/fire1.wav-4255365f4722ce8cb3af19b313b174c8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

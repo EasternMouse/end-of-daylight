@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon.png" type="Texture" id=1]
 [ext_resource path="res://actors/Mobs/AoAndon/Lamp.png" type="Texture" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://actors/Mobs/AoAndon/Lamp_n.png" type="Texture" id=6]
 [ext_resource path="res://actors/Mobs/AoAndon/AoAndon.gd" type="Script" id=7]
 [ext_resource path="res://actors/Mobs/AoAndon/PlayerFlame.gd" type="Script" id=8]
+[ext_resource path="res://actors/Mobs/AoAndon/fire0.wav" type="AudioStream" id=9]
+[ext_resource path="res://actors/Mobs/AoAndon/fire1.wav" type="AudioStream" id=10]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=11]
 
 [sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0.0599078, 0.129032, 1 )
@@ -445,6 +448,20 @@ tracks/22/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 10.0, 10.0 ]
+}
+tracks/23/type = "method"
+tracks/23/path = NodePath("RandomAudioStreamPlayer")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 4.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -905,29 +922,35 @@ visible = false
 [node name="Flames" type="Node2D" parent="." index="13"]
 position = Vector2( 0, -16 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames" index="0"]
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="Flames" index="0"]
+script = ExtResource( 11 )
+samples = [ ExtResource( 9 ), ExtResource( 10 ) ]
+random_volume_range = 0.1
+random_pitch_range = 0.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames" index="1"]
 anims/Fire = SubResource( 11 )
 anims/RESET = SubResource( 12 )
 
-[node name="Particles2D" type="Particles2D" parent="Flames" index="1"]
+[node name="Particles2D" type="Particles2D" parent="Flames" index="2"]
 position = Vector2( 0, -24 )
 emitting = false
 amount = 20
 process_material = SubResource( 13 )
 
-[node name="Particles2D2" type="Particles2D" parent="Flames" index="2"]
+[node name="Particles2D2" type="Particles2D" parent="Flames" index="3"]
 position = Vector2( -20.7846, 12 )
 emitting = false
 amount = 20
 process_material = SubResource( 13 )
 
-[node name="Particles2D3" type="Particles2D" parent="Flames" index="3"]
+[node name="Particles2D3" type="Particles2D" parent="Flames" index="4"]
 position = Vector2( 20.7846, 12 )
 emitting = false
 amount = 20
 process_material = SubResource( 13 )
 
-[node name="PlayerFlame" type="Node2D" parent="Flames" index="4"]
+[node name="PlayerFlame" type="Node2D" parent="Flames" index="5"]
 position = Vector2( 144, 16 )
 script = ExtResource( 8 )
 
