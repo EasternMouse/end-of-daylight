@@ -29,7 +29,39 @@ func _ready() -> void:
 	var seconds = time%60
 	var time_string = String("%02d" % minutes) + ":" + String("%02d" % seconds)
 	$MarginContainer/VBoxContainer/LabelTime.text = "Your time: " + time_string
+	
+	$MarginContainer/VBoxContainer/LineEdit.grab_focus()
 
 
 func _on_Button_pressed() -> void:
+	save_high_score()
 	SaveLoad.open_scene("res://scenes/world/World.tscn")
+
+
+func save_high_score() -> void:
+	var save_file = File.new()
+	var save := {}
+	
+	var err = save_file.open("user://high_score.sav", File.READ_WRITE)
+	if err != OK:
+		save = {
+			death_count = 1,
+			high_score = [{
+				name = "Mouse",
+				time = 100,
+			}],
+		}
+	else:
+		save = save_file.get_var()
+	
+	save_file.open("user://high_score.sav", File.WRITE)
+	
+	var player_name = $MarginContainer/VBoxContainer/LineEdit.text if $MarginContainer/VBoxContainer/LineEdit.text != "" else "You"
+	var new_line = {
+		name = $MarginContainer/VBoxContainer/LineEdit.text,
+		time = SaveLoad.time,
+		}
+	
+	save.high_score.append(new_line)
+	save_file.store_var(save)
+	save_file.close()

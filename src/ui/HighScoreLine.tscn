@@ -1,0 +1,28 @@
+[gd_scene format=2]
+
+[node name="HighScoreLine" type="HBoxContainer"]
+margin_top = 23.0
+margin_right = 88.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 88, 0 )
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="RichTextLabel" parent="."]
+margin_right = 42.0
+margin_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+fit_content_height = true
+
+[node name="Time" type="RichTextLabel" parent="."]
+margin_left = 46.0
+margin_right = 88.0
+margin_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+fit_content_height = true

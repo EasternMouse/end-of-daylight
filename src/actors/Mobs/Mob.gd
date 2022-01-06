@@ -61,6 +61,7 @@ func damage(received_damage:int, knockback:Vector2) -> void:
 
 
 func die() -> void:
+	is_alive = false
 	spawn_item()
 	$AnimationPlayer.play("die")
 	$RandomAudioStreamPlayer.play()
@@ -85,7 +86,7 @@ func spawn_item() -> void:
 
 
 func _on_PlayerDetector_area_entered(area: Area2D) -> void:
-	if not $AnimationPlayer.current_animation == "die":
+	if is_alive:
 		if path.size() > 0:
 			pivot.rotation = position.direction_to(path[0]).angle()
 		$AnimationPlayer.play(melee_animation)

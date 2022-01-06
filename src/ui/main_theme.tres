@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=2]
+[gd_resource type="Theme" load_steps=16 format=2]
 
 [ext_resource path="res://ui/YujiBoku14.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/Slider_white.png" type="Texture" id=2]
@@ -34,6 +34,31 @@ texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 16, 16 )
 modulate_color = Color( 0.203922, 0.203922, 0.203922, 1 )
 
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.172549, 0.164706, 0.196078, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.811765, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.172549, 0.164706, 0.196078, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.2, 0.168627, 0.168627, 0.501961 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 1, 0.54902, 0.54902, 1 )
@@ -51,3 +76,5 @@ HSlider/icons/tick = SubResource( 9 )
 HSlider/styles/grabber_area = SubResource( 10 )
 HSlider/styles/grabber_area_highlight = SubResource( 11 )
 HSlider/styles/slider = SubResource( 12 )
+LineEdit/styles/focus = SubResource( 14 )
+LineEdit/styles/normal = SubResource( 13 )
