@@ -21,7 +21,7 @@ var weapons := {
 		uses_ammo = false,
 		unlocked = true,
 		next = "seal",
-		previous = "orb"
+		previous = "orb",
 	},
 	seal = {
 		name = "seal",
@@ -33,7 +33,8 @@ var weapons := {
 		cy = 2,
 		burst = 1,
 		next = "needle",
-		previous = "melee"
+		previous = "melee",
+		trace_color = Color.red,
 	},
 	needle = {
 		name = "needle",
@@ -45,7 +46,8 @@ var weapons := {
 		cy = 10,
 		burst = 10,
 		next = "orb",
-		previous = "seal"
+		previous = "seal",
+		trace_color = Color.gray,
 	},
 	orb = {
 		name = "orb",
@@ -57,7 +59,7 @@ var weapons := {
 		cy = 5,
 		burst = 1,
 		next = "melee",
-		previous = "needle"
+		previous = "needle",
 	},
 }
 
@@ -157,6 +159,9 @@ func bullet_attack() -> void:
 			var variation = get_random_point_in_circle(current_weapon.cx, current_weapon.cy)
 			var bullet = bullet_scene.instance()
 			bullet.global_position = pivot.global_position + mouse_pos + variation
+			var path_vector = PoolVector2Array([0.0, -(mouse_pos + variation)])
+			bullet.get_node("Line2D").points = path_vector
+			bullet.get_node("Line2D").modulate = current_weapon.trace_color
 			world.add_child(bullet)
 		if current_weapon.uses_ammo:
 			current_weapon.ammo -= 1

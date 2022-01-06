@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/bullets/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=3]
@@ -16,6 +16,9 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.491525, 1 ), 1.4, 0.0, 0, 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.8, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.168627, 0.313726, 0.215686, 0 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
@@ -52,7 +55,7 @@ damping_random = 0.25
 scale_amount = 2.0
 scale_amount_random = 1.0
 scale_amount_curve = SubResource( 4 )
-color = Color( 0.203922, 0.6, 0, 1 )
+color = Color( 0.0235294, 0.0705882, 0.00392157, 1 )
 color_ramp = SubResource( 2 )
 hue_variation_random = 0.7
 
@@ -66,6 +69,14 @@ bus = "SE"
 script = ExtResource( 3 )
 samples = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ]
 random_volume_range = 1.0
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+width = 1.0
+default_color = Color( 1, 0, 0, 1 )
+gradient = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="Line2D"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="TimerDeath" to="." method="_on_TimerDeath_timeout"]
