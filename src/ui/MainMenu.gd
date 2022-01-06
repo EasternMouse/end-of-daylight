@@ -52,4 +52,4 @@ func load_high_score() -> void:
 				var seconds = line.time%60
 				var time_string = String("%02d" % minutes) + ":" + String("%02d" % seconds)
 				new_line.get_node("Time").text = time_string
-				$HighScore.add_child(new_line)
+				$HighScore/ScrollContainer/VBoxContainer.add_child(new_line)

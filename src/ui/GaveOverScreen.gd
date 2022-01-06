@@ -55,7 +55,7 @@ func save_high_score() -> void:
 			death_count = 1,
 			high_score = [{
 				name = "Mouse",
-				time = 100,
+				time = 312,
 			}],
 		}
 	else:
@@ -65,7 +65,7 @@ func save_high_score() -> void:
 			death_count = 1,
 			high_score = [{
 				name = "Mouse",
-				time = 100,
+				time = 312,
 			}],
 		}
 	save_file.open("user://high_score.sav", File.WRITE)

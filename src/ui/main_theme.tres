@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=16 format=2]
+[gd_resource type="Theme" load_steps=21 format=2]
 
 [ext_resource path="res://ui/YujiBoku14.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/Slider_white.png" type="Texture" id=2]
+[ext_resource path="res://ui/Slider_v_white.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
@@ -59,6 +60,25 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 8, 16 )
+modulate_color = Color( 1, 0.54902, 0.54902, 1 )
+
+[sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 8, 16 )
+modulate_color = Color( 0.67451, 0.196078, 0.196078, 1 )
+
+[sub_resource type="StyleBoxTexture" id=17]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 8, 16 )
+modulate_color = Color( 0.301961, 0.0470588, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 8, 16 )
+
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 1, 0.54902, 0.54902, 1 )
@@ -78,3 +98,8 @@ HSlider/styles/grabber_area_highlight = SubResource( 11 )
 HSlider/styles/slider = SubResource( 12 )
 LineEdit/styles/focus = SubResource( 14 )
 LineEdit/styles/normal = SubResource( 13 )
+VScrollBar/styles/grabber = SubResource( 15 )
+VScrollBar/styles/grabber_highlight = SubResource( 16 )
+VScrollBar/styles/grabber_pressed = SubResource( 17 )
+VScrollBar/styles/scroll = SubResource( 18 )
+VScrollBar/styles/scroll_focus = SubResource( 18 )
