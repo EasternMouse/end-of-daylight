@@ -33,12 +33,12 @@ var mobs := [
 		scene = preload("res://actors/Mobs/BlueBird/BlueBird.tscn"),
 	},
 	{
-		cost = 25,
+		cost = 24,
 		name = "Zombie",
 		scene = preload("res://actors/Mobs/Zombie/Zombie.tscn"),
 	},
 	{
-		cost = 40,
+		cost = 32,
 		name = "AoAndon",
 		scene = preload("res://actors/Mobs/AoAndon/AoAndon.tscn"),
 	},

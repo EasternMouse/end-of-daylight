@@ -121,7 +121,6 @@ size_flags_horizontal = 3
 custom_constants/separation = 0
 
 [node name="HowTo" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -159,10 +158,9 @@ margin_right = 230.0
 margin_bottom = 126.0
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 4 )
-text = "Use WASD - move around
-Use mouse - aim
-Left mouse button - shoot
-Number buttons (1, 2, 3) - change weapon
+text = "Use WASD or arrow keys - move around
+Use mouse and left mouse button - to shoot
+Number buttons (1, 2, 3) or mouse scroll wheel - change weapon
 Game becomes harder over time, go for the longest time!"
 scroll_active = false
 
