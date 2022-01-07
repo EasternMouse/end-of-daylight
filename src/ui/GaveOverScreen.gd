@@ -52,7 +52,7 @@ func save_high_score() -> void:
 	var err = save_file.open("user://high_score.sav", File.READ_WRITE)
 	if err != OK:
 		save = {
-			death_count = 1,
+			death_count = 0,
 			high_score = [{
 				name = "Mouse",
 				time = 228,
@@ -62,7 +62,7 @@ func save_high_score() -> void:
 		save = save_file.get_var()
 		if save == null:
 			save = {
-			death_count = 1,
+			death_count = 0,
 			high_score = [{
 				name = "Mouse",
 				time = 228,
