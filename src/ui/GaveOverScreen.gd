@@ -55,7 +55,7 @@ func save_high_score() -> void:
 			death_count = 1,
 			high_score = [{
 				name = "Mouse",
-				time = 312,
+				time = 228,
 			}],
 		}
 	else:
@@ -65,7 +65,7 @@ func save_high_score() -> void:
 			death_count = 1,
 			high_score = [{
 				name = "Mouse",
-				time = 312,
+				time = 228,
 			}],
 		}
 	save_file.open("user://high_score.sav", File.WRITE)
@@ -76,7 +76,15 @@ func save_high_score() -> void:
 		time = SaveLoad.time,
 		}
 	
+	if save.death_count == 1:
+		var reimu_line = {
+			name = "Reimu",
+			time = 312,
+		}
+		save.high_score.append(reimu_line)
+	
 	save.high_score.append(new_line)
 	save.high_score.sort_custom(SortHighScore, "sort_descending")
+	save.death_count += 1
 	save_file.store_var(save)
 	save_file.close()
