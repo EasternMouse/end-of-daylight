@@ -35,7 +35,7 @@ size_flags_horizontal = 5
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]End of Daylight[/center]"
-text = "End of Daylight"
+text = "[center]End of Daylight[/center]"
 fit_content_height = true
 scroll_active = false
 override_selected_font_color = true
@@ -102,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 bbcode_text = "[center]High   Sc ore[/center]"
-text = "High   Sc ore"
+text = "[center]High   Sc ore[/center]"
 fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HighScore"]
@@ -121,6 +121,7 @@ size_flags_horizontal = 3
 custom_constants/separation = 0
 
 [node name="HowTo" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
